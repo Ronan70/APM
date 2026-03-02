@@ -1,22 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Azur Premium Motor</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azur Premium Motor | Fidélisation Client</title>
+
+    <style>
+        /* Styles de base */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Noir très sombre */
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Barre de navigation */
+        header {
+            background-color: #000000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #d4af37; /* Ligne dorée */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #d4af37;
+        }
+
+        /* Section principale (Hero) */
+        .hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #d4af37;
+        }
+
+        /* Section Fidélisation */
+        .fidelisation-section {
+            padding: 50px 10%;
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            border: 1px solid #333;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+        }
+
+        /* Boutons */
+        .btn-premium {
+            background-color: #d4af37;
+            color: black;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-premium:hover {
+            background-color: #f1c40f;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Message dynamique (JS) */
+        #welcome-message {
+            margin-top: 20px;
+            font-style: italic;
+            color: #d4af37;
+            min-height: 24px;
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <strong>AZUR PREMIUM MOTOR</strong>
-        <a href="#">Espace Client</a>
-    </nav>
+    <header>
+        <div class="logo">AZUR <span>PREMIUM</span> MOTOR</div>
+        <button class="btn-premium" onclick="showLoginMessage()">ESPACE CLIENT</button>
+    </header>
 
-    <div class="message-bienvenue">
-        <h1>Bienvenue chez APM</h1>
-        <p>Spécialiste du véhicule d'occasion Premium à Antibes.</p>
-        <button>Voir nos voitures</button>
-    </div>
+    <main>
+        <section class="hero">
+            <h1>L'EXCELLENCE À VOS CÔTÉS</h1>
+            <p>Bienvenue Ronan. Améliorons ensemble la fidélité de nos clients.</p>
+            <div id="welcome-message"></div> </section>
+
+        <section class="fidelisation-section">
+            <h2>Nos leviers de fidélisation</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Suivi Entretien</h3>
+                    <p>Alertes automatiques pour vos révisions.</p>
+                </div>
+                <div class="card">
+                    <h3>Parrainage</h3>
+                    <p>Gagnez des avantages en recommandant APM.</p>
+                </div>
+                <div class="card">
+                    <h3>Conciergerie</h3>
+                    <p>Un service sur-mesure pour votre véhicule.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function showLoginMessage() {
+            // Cette fonction s'exécute quand on clique sur le bouton
+            const messageDiv = document.getElementById('welcome-message');
+            
+            // On simule une petite vérification
+            messageDiv.innerHTML = "Connexion en cours vers votre espace sécurisé...";
+            
+            // Après 1,5 seconde, on change le message
+            setTimeout(() => {
+                messageDiv.innerHTML = "Bienvenue dans l'univers Azur Premium Motor, cher client !";
+                alert("Bravo ! Ton premier script JS fonctionne. C'est le début de l'espace fidélisation.");
+            }, 1500);
+        }
+    </script>
 
 </body>
 </html>
