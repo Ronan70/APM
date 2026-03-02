@@ -3,148 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azur Premium Motor | Connexion</title>
-
+    <title>Azur Premium Motor | Espace Privé</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* DESIGN GLOBAL */
+        :root {
+            --gold: #d4af37;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --input-bg: #252525;
+            --text: #ffffff;
+        }
+
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: #121212;
-            color: white;
+            background-color: var(--dark-bg);
+            color: var(--text);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* SECTION CONNEXION */
-        #login-page {
+        /* --- ÉCRAN DE CONNEXION --- */
+        #login-screen {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-grow: 1;
+            padding: 20px;
         }
 
         .login-card {
-            background: #1e1e1e;
+            background: var(--card-bg);
             padding: 40px;
-            border-radius: 10px;
-            border: 1px solid #d4af37;
-            width: 350px;
+            border-radius: 15px;
+            border: 1px solid var(--gold);
+            width: 100%;
+            max-width: 400px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .login-card h2 { color: #d4af37; margin-bottom: 20px; }
+        .login-card h2 {
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
 
-        .input-group { margin-bottom: 15px; text-align: left; }
+        .login-card h2 span { color: var(--gold); font-weight: 700; }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         input {
             width: 100%;
             padding: 12px;
-            margin-top: 5px;
-            background: #2b2b2b;
-            border: 1px solid #444;
+            background: var(--input-bg);
+            border: 1px solid #333;
             color: white;
             border-radius: 5px;
             box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
         }
 
-        .btn-submit {
-            width: 100%;
-            background: #d4af37;
-            color: black;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
+        input:focus { border-color: var(--gold); }
+
+        /* --- ESPACE CLIENT (Caché par défaut) --- */
+        #client-dashboard {
+            display: none; /* On cache l'espace client au début */
         }
 
-        /* SECTION ACCUEIL (Cachée au début) */
-        #home-page {
-            display: none; /* C'est ici qu'on cache la page */
-        }
-
-        header {
-            background: #000;
-            padding: 20px;
+        nav {
+            background-color: #000;
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 1px solid var(--gold);
         }
 
-        .hero {
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80');
-            background-size: cover;
-            text-align: center;
+        .container { padding: 40px 5%; max-width: 1200px; margin: auto; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        .gold { color: #d4af37; }
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        .card h3 { color: var(--gold); text-transform: uppercase; font-size: 0.9rem; margin-top: 0; }
+
+        /* --- BOUTONS --- */
+        .btn {
+            background: var(--gold);
+            color: black;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: #f1c40f; transform: scale(1.02); }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        .car-image {
+            width: 100%;
+            height: 150px;
+            background: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
     </style>
 </head>
 <body>
 
-    <div id="login-page">
+    <div id="login-screen">
         <div class="login-card">
-            <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;">
-                AZUR <span class="gold">PREMIUM</span> MOTOR
+            <div style="margin-bottom: 20px; font-weight: 700; letter-spacing: 2px;">
+                AZUR <span style="color: var(--gold);">PREMIUM</span> MOTOR
             </div>
-            <h2>Connexion Client</h2>
+            <h2>Connexion <span>Privée</span></h2>
+            
             <div class="input-group">
-                <label>Email</label>
-                <input type="email" id="email" placeholder="client@exemple.com">
+                <label>Adresse Mail</label>
+                <input type="email" id="user-email" placeholder="votre-nom@exemple.com">
             </div>
+            
             <div class="input-group">
                 <label>Mot de passe</label>
-                <input type="password" id="password" placeholder="••••••••">
+                <input type="password" id="user-pass" placeholder="••••••••">
             </div>
-            <button class="btn-submit" onclick="handleLogin()">SE CONNECTER</button>
-            <p id="error-msg" style="color: red; font-size: 0.8rem; margin-top: 10px;"></p>
+            
+            <button class="btn" onclick="connecter()">Se Connecter</button>
+            
+            <p id="error-msg" style="color: #e74c3c; font-size: 0.8rem; margin-top: 15px; display: none;">
+                Veuillez remplir tous les champs.
+            </p>
         </div>
     </div>
 
-    <div id="home-page">
-        <header>
-            <div class="logo">AZUR <span class="gold">PREMIUM</span> MOTOR</div>
-            <div id="user-display" style="font-weight: bold;"></div>
-        </header>
+    <div id="client-dashboard">
+        <nav>
+            <div style="font-weight: 700; letter-spacing: 2px;">AZUR <span style="color: var(--gold);">PREMIUM</span> MOTOR</div>
+            <div id="display-name" style="font-size: 0.9rem; color: var(--gold);"></div>
+        </nav>
 
-        <section class="hero">
-            <h1>BIENVENUE DANS VOTRE ESPACE</h1>
-            <p>Ravi de vous revoir chez APM.</p>
-            <button class="btn-submit" style="width: auto; padding: 10px 30px;" onclick="location.reload()">DÉCONNEXION</button>
-        </section>
+        <div class="container">
+            <h1 style="font-weight: 300; margin-bottom: 40px;">Ravi de vous revoir, <span id="user-name" style="color: var(--gold); font-weight: 700;"></span></h1>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Mon Véhicule</h3>
+                    <div class="car-image"></div>
+                    <p><strong>BMW M4 Competition</strong></p>
+                    <p style="color: #888; font-size: 0.8rem;">Immatriculation : AA-123-BB</p>
+                </div>
+
+                <div class="card">
+                    <h3>Services & Garantie</h3>
+                    <p>Statut : <span style="color: #27ae60;">Active</span></p>
+                    <p style="font-size: 0.8rem;">Prochaine révision : 15 Septembre 2025</p>
+                    <button class="btn btn-outline">Prendre RDV Atelier</button>
+                </div>
+
+                <div class="card">
+                    <h3>Parrainage Premium</h3>
+                    <p>Offrez 500€ de remise à un proche et recevez un cadeau exclusif.</p>
+                    <button class="btn">Obtenir mon code</button>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <button onclick="location.reload()" style="background: none; border: none; color: #555; cursor: pointer; text-decoration: underline;">Se déconnecter</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        function handleLogin() {
-            // On récupère ce que l'utilisateur a tapé
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorMsg = document.getElementById('error-msg');
+        function connecter() {
+            const email = document.getElementById('user-email').value;
+            const pass = document.getElementById('user-pass').value;
+            const error = document.getElementById('error-msg');
 
-            // On fait une petite vérification simple
-            if (email !== "" && password !== "") {
-                // Étape A : On cache la page de login
-                document.getElementById('login-page').style.display = 'none';
+            if (email !== "" && pass !== "") {
+                // On cache la connexion
+                document.getElementById('login-screen').style.display = 'none';
                 
-                // Étape B : On affiche la page d'accueil
-                document.getElementById('home-page').style.display = 'block';
+                // On affiche l'espace client
+                document.getElementById('client-dashboard').style.display = 'block';
                 
-                // Étape C : On affiche le mail de l'utilisateur en haut
-                document.getElementById('user-display').innerHTML = "👤 " + email;
-
-                alert("Connexion réussie !");
+                // On personnalise avec le début de l'adresse mail (ex: ronan@gmail.com -> ronan)
+                const name = email.split('@')[0];
+                document.getElementById('user-name').innerText = name.charAt(0).toUpperCase() + name.slice(1);
+                document.getElementById('display-name').innerText = "👤 " + email;
             } else {
-                errorMsg.innerHTML = "Veuillez remplir tous les champs.";
+                error.style.display = 'block';
             }
         }
     </script>
