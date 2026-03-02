@@ -3,37 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azur Premium Motor | Espace Privé</title>
+    <title>Espace Privé | Azur Premium Motor</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --gold: #d4af37;
-            --dark-bg: #0a0a0a;
-            --card-bg: rgba(26, 26, 26, 0.9); /* Transparent pour voir le fond */
+            --dark-bg: #050505;
+            --card-bg: rgba(20, 20, 20, 0.85);
             --text: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--dark-bg);
-            /* IMAGE D'ARRIÈRE-PLAN SUR TOUT LE SITE */
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                              url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80') fixed center/cover;
             color: var(--text);
             min-height: 100vh;
         }
 
-        /* --- ÉCRAN DE CONNEXION --- */
+        /* --- CONNEXION --- */
         #login-screen {
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
         .login-card {
@@ -43,130 +39,243 @@
             border: 1px solid var(--gold);
             width: 350px;
             text-align: center;
-            backdrop-filter: blur(10px); /* Effet de flou moderne */
+            backdrop-filter: blur(15px);
         }
 
-        .input-group { margin-bottom: 20px; text-align: left; }
-        .input-group label { display: block; font-size: 0.7rem; color: var(--gold); margin-bottom: 5px; text-transform: uppercase; }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid #444;
-            color: white;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        /* --- ESPACE CLIENT --- */
+        /* --- DASHBOARD --- */
         #client-dashboard { display: none; }
 
         nav {
-            background-color: rgba(0,0,0,0.9);
-            padding: 20px 5%;
+            background: rgba(0,0,0,0.95);
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .container { padding: 40px 5%; max-width: 1200px; margin: auto; }
-        
-        .grid {
+        .container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        /* --- GRILLE PRINCIPALE (2/3 - 1/3) --- */
+        .main-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            align-items: start;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 30px;
             backdrop-filter: blur(10px);
+            transition: var(--transition);
         }
 
-        .card h3 { color: var(--gold); text-transform: uppercase; font-size: 0.9rem; margin-top: 0; }
+        /* --- FENETRE GARAGE (L'EXTENSIBLE) --- */
+        .garage-card {
+            overflow: hidden;
+            position: relative;
+        }
 
+        .car-hero {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .car-photo-main {
+            width: 50%;
+            height: 250px;
+            background: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80') center/cover;
+            border-radius: 10px;
+            border: 1px solid var(--gold);
+        }
+
+        .car-basic-info { width: 50%; }
+
+        .info-tag {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* Détails cachés */
+        .more-details {
+            max-height: 0;
+            opacity: 0;
+            transition: var(--transition);
+            border-top: 1px solid rgba(212, 175, 55, 0);
+            margin-top: 0;
+        }
+
+        .more-details.active {
+            max-height: 1000px;
+            opacity: 1;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .spec-cat h4 { color: var(--gold); border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .spec-item { display: flex; justify-content: space-between; margin: 10px 0; font-size: 0.9rem; }
+        .spec-label { color: #888; }
+
+        /* --- COLONNE DROITE --- */
+        .side-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* --- BOUTONS --- */
         .btn {
             background: var(--gold);
             color: black;
             border: none;
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
             text-transform: uppercase;
-            margin-top: 10px;
+            transition: 0.3s;
         }
 
-        .car-photo {
-            width: 100%;
-            height: 150px;
-            background: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80') center/cover;
-            border-radius: 8px;
-            margin: 15px 0;
+        .btn:hover { background: #f1c40f; transform: translateY(-2px); }
+
+        .btn-plus {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            margin-top: 20px;
         }
 
-        .gold-text { color: var(--gold); font-weight: 700; }
+        input {
+            width: 100%; padding: 12px; margin: 10px 0;
+            background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px;
+        }
+
+        @media (max-width: 900px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .car-hero { flex-direction: column; }
+            .car-photo-main, .car-basic-info { width: 100%; }
+        }
     </style>
 </head>
 <body>
 
     <div id="login-screen">
         <div class="login-card">
-            <h2 style="font-weight: 300; letter-spacing: 2px;">APM <span class="gold-text">PRIVÉ</span></h2>
-            <div class="input-group">
-                <label>Identifiant</label>
-                <input type="email" id="email" placeholder="votre-email@exemple.com">
-            </div>
-            <div class="input-group">
-                <label>Mot de passe</label>
-                <input type="password" id="pass" placeholder="••••••••">
-            </div>
-            <button class="btn" onclick="entrer()">Connexion</button>
+            <h2 style="font-weight: 300;">APM <span style="color:var(--gold); font-weight:700;">PRIVÉ</span></h2>
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="pass" placeholder="Mot de passe">
+            <button class="btn" onclick="entrer()">Se Connecter</button>
         </div>
     </div>
 
     <div id="client-dashboard">
         <nav>
-            <div style="font-weight: 700; letter-spacing: 2px;">AZUR <span class="gold-text">PREMIUM</span> MOTOR</div>
-            <div id="top-user" style="color: var(--gold);"></div>
+            <div style="font-weight:700; letter-spacing:2px;">AZUR <span style="color:var(--gold);">PREMIUM</span> MOTOR</div>
+            <div id="user-tag" style="color:var(--gold); font-size:0.8rem;"></div>
         </nav>
 
         <div class="container">
-            <h1 style="font-weight: 300; margin-bottom: 40px;">Ravi de vous revoir, <span id="user-welcome" class="gold-text"></span></h1>
-            
-            <div class="grid">
-                <div class="card">
+            <h1 style="font-weight:300; margin-bottom:40px;">Ravi de vous revoir, <span id="client-name" style="color:var(--gold); font-weight:700;"></span></h1>
+
+            <div class="main-layout">
+                
+                <div class="card garage-card">
                     <h3>Mon Garage Privé</h3>
-                    <div class="car-photo"></div>
-                    <p><strong>Porsche 911 Carrera S</strong></p>
-                    <p style="font-size: 0.8rem; color: #bbb;">Date d'acquisition : 15/01/2026</p>
+                    
+                    <div class="car-hero">
+                        <div class="car-photo-main"></div>
+                        <div class="car-basic-info">
+                            <span class="info-tag">VÉHICULE ACTUEL</span>
+                            <h2 style="margin: 0 0 15px 0; font-size: 2rem;">Porsche 911 Carrera S</h2>
+                            
+                            <div class="spec-item"><span class="spec-label">Puissance :</span> <span>450 cv</span></div>
+                            <div class="spec-item"><span class="spec-label">Kilométrage :</span> <span>12 450 km</span></div>
+                            <div class="spec-item"><span class="spec-label">Carrosserie :</span> <span>Coupé</span></div>
+                            <div class="spec-item"><span class="spec-label">Transmission :</span> <span>PDK 8 rapports</span></div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-plus" id="btn-toggle" onclick="toggleDetails()">+ Plus d'informations</button>
+
+                    <div class="more-details" id="details-box">
+                        <div class="specs-grid">
+                            <div class="spec-cat">
+                                <h4>Performance & Moteur</h4>
+                                <div class="spec-item"><span class="spec-label">Moteur</span><span>Flat-6 3.0L Bi-Turbo</span></div>
+                                <div class="spec-item"><span class="spec-label">0 à 100 km/h</span><span>3.7 secondes</span></div>
+                                <div class="spec-item"><span class="spec-label">Vitesse Max</span><span>308 km/h</span></div>
+                                <div class="spec-item"><span class="spec-label">Couple</span><span>530 Nm</span></div>
+                            </div>
+                            <div class="spec-cat">
+                                <h4>Design & Esthétique</h4>
+                                <div class="spec-item"><span class="spec-label">Couleur Ext.</span><span>Gris Quartz Métallisé</span></div>
+                                <div class="spec-item"><span class="spec-label">Couleur Int.</span><span>Cuir Noir & Alcantara</span></div>
+                                <div class="spec-item"><span class="spec-label">Jantes</span><span>20/21" RS Spyder</span></div>
+                                <div class="spec-item"><span class="spec-label">Étriers de frein</span><span>Rouge Porsche</span></div>
+                            </div>
+                            <div class="spec-cat">
+                                <h4>Confort & Options</h4>
+                                <div class="spec-item"><span class="spec-label">Sièges</span><span>Sport Plus Électriques</span></div>
+                                <div class="spec-item"><span class="spec-label">Système Audio</span><span>BOSE® Surround Sound</span></div>
+                                <div class="spec-item"><span class="spec-label">Toit</span><span>Ouvrant Panoramique</span></div>
+                                <div class="spec-item"><span class="spec-label">Éclairage</span><span>Phares Matrix LED</span></div>
+                            </div>
+                            <div class="spec-cat">
+                                <h4>Infos Pratiques</h4>
+                                <div class="spec-item"><span class="spec-label">Crit'Air</span><span>Classe 1</span></div>
+                                <div class="spec-item"><span class="spec-label">Émissions</span><span>205 g/km</span></div>
+                                <div class="spec-item"><span class="spec-label">Garantie</span><span>Porsche Approved</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card">
-                    <h3>Prochain Entretien</h3>
-                    <p>Statut : <span style="color: #27ae60; font-weight: bold;">À jour</span></p>
-                    <p>Prévu le : <span class="gold-text">15 Septembre 2026</span></p>
-                    <p style="font-size: 0.8rem; color: #bbb;">Nous vous contacterons 1 mois avant.</p>
-                    <button class="btn" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">Prendre rendez-vous</button>
+                <div class="side-column">
+                    <div class="card">
+                        <h3 style="font-size:0.8rem; color:var(--gold);">Entretien</h3>
+                        <p style="margin-top:10px;">Prochaine révision :</p>
+                        <h4 style="margin:5px 0;">15 Septembre 2026</h4>
+                        <div style="background:#333; height:4px; border-radius:2px; margin:15px 0;">
+                            <div style="background:var(--gold); width:20%; height:100%;"></div>
+                        </div>
+                        <button class="btn" style="font-size:0.7rem;">Réserver un créneau</button>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="font-size:0.8rem; color:var(--gold);">Parrainage</h3>
+                        <p style="font-size:0.8rem; margin:10px 0;">Faites profiter vos proches de l'expertise APM.</p>
+                        <div style="border:1px dashed var(--gold); padding:10px; text-align:center; font-weight:bold; color:var(--gold);">
+                            CODE : APM-RONAN-2026
+                        </div>
+                    </div>
                 </div>
 
-                <div class="card">
-                    <h3>Fidélité & Parrainage</h3>
-                    <p>Votre code privilège : <span class="gold-text">APM-2026-XP</span></p>
-                    <p style="font-size: 0.8rem;">Partagez ce code et recevez 300€ de bon d'achat atelier.</p>
-                    <button class="btn">Générer un lien</button>
-                </div>
-            </div>
-            
-            <p style="text-align: center; margin-top: 40px; font-size: 0.8rem; color: #555;">
-                Aujourd'hui : 2 Février 2026 | Session sécurisée
-            </p>
-        </div>
+            </div> </div>
     </div>
 
     <script>
@@ -175,15 +284,24 @@
             if(mail !== "") {
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('client-dashboard').style.display = 'block';
-                
-                const prenom = mail.split('@')[0];
-                document.getElementById('user-welcome').innerText = prenom.charAt(0).toUpperCase() + prenom.slice(1);
-                document.getElementById('top-user').innerText = "👤 " + mail;
+                const name = mail.split('@')[0];
+                document.getElementById('client-name').innerText = name.charAt(0).toUpperCase() + name.slice(1);
+                document.getElementById('user-tag').innerText = "ESPACE CLIENT 👤 " + mail;
+            }
+        }
+
+        function toggleDetails() {
+            const box = document.getElementById('details-box');
+            const btn = document.getElementById('btn-toggle');
+            
+            box.classList.toggle('active');
+            
+            if(box.classList.contains('active')) {
+                btn.innerText = "- Réduire les informations";
             } else {
-                alert("Veuillez entrer vos identifiants.");
+                btn.innerText = "+ Plus d'informations";
             }
         }
     </script>
-
 </body>
 </html>
