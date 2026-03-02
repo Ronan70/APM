@@ -19,202 +19,121 @@
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
                         url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80') fixed center/cover;
             color: var(--text);
             min-height: 100vh;
         }
 
-        /* --- BLOC LOGO APM EN PUR CSS --- */
-        /* C'est ce bloc que tu pourras remplacer par ton image officielle plus tard */
-        .logo-block {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        /* --- LOGO APM CSS --- */
+        .logo-block { display: flex; align-items: center; gap: 15px; }
         .apm-badge-css {
-            width: 45px;
-            height: 50px;
-            background: transparent;
-            border: 2px solid var(--gold);
+            width: 45px; height: 50px; border: 2px solid var(--gold);
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 700;
-            color: var(--gold);
-            font-size: 16px;
-            letter-spacing: -1px;
+            display: flex; justify-content: center; align-items: center;
+            font-weight: 700; color: var(--gold); font-size: 16px;
         }
 
         /* --- CONNEXION --- */
-        #login-screen {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        #login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; }
         .login-card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid var(--gold);
-            width: 380px;
-            text-align: center;
-            backdrop-filter: blur(20px);
+            background: var(--card-bg); padding: 40px; border-radius: 20px;
+            border: 1px solid var(--gold); width: 380px; text-align: center; backdrop-filter: blur(20px);
         }
 
         /* --- DASHBOARD --- */
         #client-dashboard { display: none; }
         nav {
-            background: rgba(0,0,0,0.95);
-            padding: 10px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--gold);
-            position: sticky; top: 0; z-index: 1000;
+            background: rgba(0,0,0,0.95); padding: 10px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000;
         }
 
         .container { max-width: 1400px; margin: auto; padding: 30px 20px; }
 
-        /* --- SELECTEUR VOITURE (Tabs) --- */
         .car-tabs { display: flex; gap: 10px; margin-bottom: 25px; }
         .tab {
-            padding: 12px 25px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid #333;
-            color: #888;
-            border-radius: 8px 8px 0 0;
-            cursor: pointer;
-            transition: 0.3s;
-            font-weight: bold;
-            font-size: 0.8rem;
-            text-transform: uppercase;
+            padding: 12px 25px; background: rgba(255,255,255,0.05); border: 1px solid #333;
+            color: #888; border-radius: 8px 8px 0 0; cursor: pointer; transition: 0.3s;
+            font-weight: bold; font-size: 0.8rem; text-transform: uppercase;
         }
         .tab.active {
-            background: var(--card-bg);
-            border-color: var(--gold);
-            border-bottom: 1px solid var(--card-bg);
-            color: var(--gold);
-            transform: translateY(-2px);
+            background: var(--card-bg); border-color: var(--gold);
+            border-bottom: 1px solid var(--card-bg); color: var(--gold); transform: translateY(-2px);
         }
 
-        /* --- LAYOUT PRINCIPAL --- */
-        .main-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            align-items: start;
-        }
+        .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; align-items: start; }
 
         .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            margin-bottom: 30px;
+            background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 25px; backdrop-filter: blur(10px); margin-bottom: 30px;
         }
 
         .card-title {
-            color: var(--gold);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
-            display: block;
-            font-weight: bold;
+            color: var(--gold); text-transform: uppercase; font-size: 0.85rem;
+            letter-spacing: 1.5px; margin-bottom: 20px; display: block; font-weight: bold;
         }
 
         /* --- GARAGE --- */
         .car-display { display: flex; gap: 30px; }
         .car-img {
-            width: 45%; height: 220px;
-            border-radius: 10px;
-            background-size: cover;
-            background-position: center;
-            border: 1px solid #333;
+            width: 45%; height: 250px; border-radius: 10px;
+            background-size: cover; background-position: center; border: 1px solid #333;
         }
         .car-main-specs { width: 55%; }
 
-        .more-details {
-            max-height: 0; opacity: 0; overflow: hidden;
-            transition: var(--transition);
-            border-top: 0px solid transparent;
-        }
+        .more-details { max-height: 0; opacity: 0; overflow: hidden; transition: var(--transition); }
         .more-details.active {
-            max-height: 800px; opacity: 1;
-            margin-top: 25px; padding-top: 25px;
+            max-height: 1000px; opacity: 1; margin-top: 25px; padding-top: 25px;
             border-top: 1px solid rgba(212, 175, 55, 0.2);
         }
+
+        .specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .spec-cat h4 { color: var(--gold); font-size: 0.8rem; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .spec-item { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 8px; color: #bbb; }
+        .spec-val { color: white; font-weight: bold; }
 
         /* --- SUGGESTIONS --- */
         .suggest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .suggest-card {
-            background: rgba(255,255,255,0.03);
-            border-radius: 10px; padding: 15px;
-            border: 1px solid #222;
-            transition: var(--transition);
+            background: rgba(255,255,255,0.03); border-radius: 10px; padding: 15px;
+            border: 1px solid #222; transition: var(--transition); overflow: hidden;
         }
-        .suggest-card:hover { border-color: rgba(212, 175, 55, 0.4); transform: translateY(-3px); }
-        .suggest-img { height: 120px; border-radius: 5px; margin-bottom: 10px; background-size: cover; background-position: center; }
+        .suggest-img { 
+            height: 130px; border-radius: 5px; margin-bottom: 10px; 
+            background-size: cover; background-position: center; 
+            transition: background-image 0.5s ease-in-out;
+        }
 
-        /* --- BOUTONS --- */
+        /* --- INPUTS & SELECTS --- */
         input, select {
             width: 100%; padding: 12px; margin: 10px 0;
-            background: rgba(255,255,255,0.07); border: 1px solid #333;
-            color: white; border-radius: 5px; font-family: inherit; font-size: 0.9rem;
+            background: #1a1a1a; border: 1px solid #444;
+            color: white; border-radius: 5px; font-family: inherit;
         }
+        select option { background: #1a1a1a; color: white; }
+
         .btn {
-            background: var(--gold); color: black; border: none;
-            padding: 14px; border-radius: 6px; font-weight: 700;
-            cursor: pointer; width: 100%; text-transform: uppercase;
-            transition: 0.3s; font-size: 0.8rem;
+            background: var(--gold); color: black; border: none; padding: 14px;
+            border-radius: 6px; font-weight: 700; cursor: pointer; width: 100%;
+            text-transform: uppercase; transition: 0.3s; font-size: 0.8rem;
         }
-        .btn:hover { background: var(--gold-dark); transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
         
-        .btn-outline {
-            background: transparent; border: 1px solid var(--gold); color: var(--gold);
-        }
-
-        /* --- LE BOUTON D'ESSAI (Le survol de fou !) --- */
         .btn-suggest {
-            background: white; /* Fond blanc par défaut */
-            color: black;
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            margin-top: 10px;
-            transition: var(--transition);
+            background: white; color: black; border: none; padding: 10px;
+            border-radius: 6px; font-weight: 700; cursor: pointer; width: 100%;
+            text-transform: uppercase; font-size: 0.7rem; margin-top: 10px; transition: 0.3s;
         }
-        
-        /* C'est cet effet que tu vas adorer */
-        .btn-suggest:hover {
-            background: var(--gold); /* Devient doré au survol */
-            color: black;
-            transform: translateY(-3px); /* Se lève légèrement */
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); /* Douce lueur dorée */
-        }
+        .btn-suggest:hover { background: var(--gold); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
 
-        /* --- WHATSAPP --- */
         .whatsapp-btn {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #25D366; color: white;
-            width: 60px; height: 60px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            cursor: pointer; z-index: 1000; text-decoration: none;
-            transition: 0.3s;
+            position: fixed; bottom: 30px; right: 30px; background: #25D366;
+            width: 60px; height: 60px; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1000;
         }
-        .whatsapp-btn:hover { transform: scale(1.1); }
 
-        @media (max-width: 1000px) { .main-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1000px) { .main-grid { grid-template-columns: 1fr; } .specs-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -252,15 +171,14 @@
             </div>
 
             <div class="main-grid">
-                
                 <div class="left-col">
                     <div class="card">
                         <span class="card-title">Fiche d'identité du véhicule</span>
                         <div class="car-display">
                             <div class="car-img" id="main-car-img"></div>
                             <div class="car-main-specs">
-                                <h2 id="car-name" style="margin:0 0 15px 0;">---</h2>
-                                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9rem;">
+                                <h2 id="car-name" style="margin:0 0 15px 0; font-size: 1.8rem;">---</h2>
+                                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.85rem;">
                                     <p style="color:#888;">Puissance: <b style="color:white" id="car-hp">---</b></p>
                                     <p style="color:#888;">Kilométrage: <b style="color:white" id="car-km">---</b></p>
                                     <p style="color:#888;">Carrosserie: <b style="color:white" id="car-body">---</b></p>
@@ -269,50 +187,30 @@
                                 <button class="btn btn-outline" style="margin-top: 20px;" onclick="toggleMore()">Plus d'informations</button>
                             </div>
                         </div>
-
                         <div class="more-details" id="more-details">
-                            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                                <div>
-                                    <h4 style="color:var(--gold); font-size: 0.8rem;">PERFORMANCE</h4>
-                                    <p style="font-size:0.8rem; color:#888;" id="detail-engine">Moteur: ---</p>
-                                    <p style="font-size:0.8rem; color:#888;" id="detail-trans">Boîte: ---</p>
-                                </div>
-                                <div>
-                                    <h4 style="color:var(--gold); font-size: 0.8rem;">DESIGN INT.</h4>
-                                    <p style="font-size:0.8rem; color:#888;" id="detail-seats">Sièges: ---</p>
-                                    <p style="font-size:0.8rem; color:#888;" id="detail-color">Couleur: ---</p>
-                                </div>
-                                <div>
-                                    <h4 style="color:var(--gold); font-size: 0.8rem;">OPTIONS</h4>
-                                    <p style="font-size:0.8rem; color:#888;" id="detail-audio">Audio: ---</p>
-                                    <p style="font-size:0.8rem; color:#888;" id="detail-safety">Sécurité: ---</p>
-                                </div>
-                            </div>
+                            <div class="specs-grid" id="full-specs-content"></div>
                         </div>
                     </div>
 
                     <div class="card">
-                        <span class="card-title">Suggestions pour Vous</span>
-                        <div class="suggest-grid" id="suggest-container">
-                            </div>
+                        <span class="card-title">Suggestions personnalisées (Survoler pour voir les photos)</span>
+                        <div class="suggest-grid" id="suggest-container"></div>
                     </div>
                 </div>
 
                 <div class="right-col">
                     <div class="card">
                         <span class="card-title">Entretien & Maintenance</span>
-                        <p style="font-size: 0.9rem;">Prochaine révision : <br><b>15 Septembre 2026</b></p>
-                        <button class="btn" style="margin-top:15px; font-size: 0.7rem;">Réserver l'atelier</button>
+                        <p style="font-size: 0.9rem; margin-bottom: 5px;">Prochaine révision :</p>
+                        <h4 id="service-date" style="margin:0; font-size: 1.1rem; color: white;">---</h4>
+                        <button class="btn" style="margin-top:20px; font-size: 0.7rem;">Réserver l'atelier</button>
                     </div>
-
                     <div class="card">
                         <span class="card-title">Parrainage Premium</span>
-                        <p style="font-size: 0.8rem;">Code exclusif : <b style="color:var(--gold)">APM-PRIVILEGE</b></p>
+                        <p style="font-size: 0.8rem;">Code : <b style="color:var(--gold)">APM-EXCLUSIF-2026</b></p>
                     </div>
-
                     <div class="card">
                         <span class="card-title">Estimer mon véhicule actuel</span>
-                        <p style="font-size: 0.8rem; color:#888; margin-bottom: 15px;">Mise à jour instantanée.</p>
                         <input type="number" id="est-km" placeholder="Kilométrage actuel">
                         <select id="est-state">
                             <option value="1">État Excellent</option>
@@ -320,105 +218,153 @@
                             <option value="0.85">État Moyen</option>
                             <option value="0.6">Mauvais état (Frais à prévoir)</option>
                         </select>
-                        <button class="btn" onclick="calculateEstimation()">Calculer l'estimation</button>
-                        <div id="est-result" style="margin-top: 15px; font-weight: 700; color: var(--gold); text-align: center; font-size: 1.2rem;"></div>
+                        <button class="btn" onclick="calculateEstimation()">Obtenir l'estimation</button>
+                        <div id="est-result" style="margin-top: 15px; font-weight: 700; color: var(--gold); text-align: center; font-size: 1.3rem;"></div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <a href="#" class="whatsapp-btn">
-        <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-2.32 0-4.591.899-6.41 2.505-3.908 3.434-4.509 9.427-1.366 13.57l-1.012 3.703 3.789-.994c1.517.822 3.225 1.254 4.978 1.255h.005c5.307 0 9.627-4.32 9.63-9.63 0-2.573-1.002-4.991-2.822-6.812-1.82-1.821-4.238-2.825-6.812-2.827h-.02zm6.336 13.243c-.258.734-1.287 1.34-1.782 1.408-.45.061-.892.272-2.907-.538-2.584-1.038-4.257-3.664-4.39-3.837-.128-.173-1.077-1.432-1.077-2.729 0-1.297.689-1.933.931-2.191.242-.258.534-.323.712-.323.178 0 .356.002.508.01.164.008.388-.063.606.463.224.542.766 1.868.832 2.001.066.132.11.286.022.463-.088.176-.132.286-.264.44-.132.154-.278.344-.396.463-.132.132-.27.275-.116.54.154.264.683 1.124 1.464 1.82.999.89 1.838 1.166 2.094 1.297.264.132.418.11.572-.066.154-.176.66-.77.836-1.034.176-.264.352-.22.594-.132.242.088 1.541.727 1.805.859.264.132.44.198.506.309.066.11.066.638-.192 1.372z"/></svg>
-    </a>
-
     <script>
         const garage = [
             {
-                name: "Porsche 911 Carrera S", hp: "450 cv", km: "12 450 km", year: "2024", body: "Coupé", img: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80",
-                baseVal: 135000, engine: "Flat-6 3.0L Bi-Turbo", trans: "PDK 8 rapports", seats: "Sport Plus Cuir", color: "Gris Quartz", audio: "BOSE Surround", safety: "InnoDrive",
+                name: "Porsche 911 Carrera S", hp: "450 cv", km: "12 450", year: "2024", body: "Coupé Sport", 
+                img: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80",
+                service: "15 Septembre 2026", baseVal: 135000,
+                specs: {
+                    perf: [["Moteur", "Flat-6 3.0L Bi-Turbo"], ["0-100 km/h", "3.7s"], ["Vitesse Max", "308 km/h"]],
+                    design: [["Couleur Ext.", "Gris Quartz"], ["Intérieur", "Cuir Noir / Alcantara"], ["Jantes", "20/21\" RS Spyder"]],
+                    confort: [["Sièges", "Sport Plus Élec."], ["Audio", "BOSE Surround"], ["Toit", "Ouvrant Panoramique"]],
+                    pratique: [["Crit'Air", "Classe 1"], ["Garantie", "Porsche Approved"], ["Émissions", "205 g/km"]]
+                },
                 suggestions: [
-                    { name: "Porsche Taycan GTS", hp: "598 cv", km: "5 200 km", year: "2025", body: "Berline Élec", img: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=400&q=80" },
-                    { name: "Audi RS6 Avant", hp: "600 cv", km: "18 900 km", year: "2024", body: "Break Sport", img: "https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&w=400&q=80" }
+                    { 
+                        name: "Porsche Taycan GTS", hp: "598 cv", km: "5 200", year: "2025", 
+                        images: [
+                            "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=500&q=80",
+                            "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=500&q=80",
+                            "https://images.unsplash.com/photo-1554744512-d6c603f27c54?auto=format&fit=crop&w=500&q=80"
+                        ]
+                    },
+                    { 
+                        name: "Audi RS6 Avant", hp: "600 cv", km: "18 900", year: "2024", 
+                        images: [
+                            "https://images.unsplash.com/photo-1606148047423-9993309a4d04?auto=format&fit=crop&w=500&q=80",
+                            "https://images.unsplash.com/photo-1614165933394-87851944621a?auto=format&fit=crop&w=500&q=80",
+                            "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=500&q=80"
+                        ]
+                    }
                 ]
             },
             {
-                name: "Audi Q8 S-Line", hp: "286 cv", km: "31 200 km", year: "2024", body: "SUV Luxe", img: "https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&w=800&q=80",
-                baseVal: 85000, engine: "V6 3.0L TDI", trans: "Tiptronic 8", seats: "S-Line Alcantara", color: "Noir Mythic", audio: "Bang & Olufsen", safety: "Pre-Sense 360",
+                name: "Audi Q8 S-Line Luxe", hp: "286 cv", km: "31 200", year: "2024", body: "SUV Premium", 
+                img: "https://images.unsplash.com/photo-1606611013016-969c19ba27bb?auto=format&fit=crop&w=800&q=80",
+                service: "12 Janvier 2027", baseVal: 82000,
+                specs: {
+                    perf: [["Moteur", "V6 3.0L TDI"], ["Couple", "600 Nm"], ["Transmission", "Quattro Tiptronic"]],
+                    design: [["Couleur Ext.", "Noir Mythic"], ["Finition", "S-Line Black Edition"], ["Jantes", "22\" Audi Sport"]],
+                    confort: [["Suspension", "Pneumatique Adapt."], ["Clim", "4-Zones"], ["Audio", "Bang & Olufsen 3D"]],
+                    pratique: [["Coffre", "605 Litres"], ["Attelage", "Électrique"], ["Aide au parking", "Caméras 360°"]]
+                },
                 suggestions: [
-                    { name: "Range Rover Sport", hp: "300 cv", km: "100 km", year: "2026", body: "SUV Luxe", img: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=400&q=80" },
-                    { name: "Porsche Cayenne Coupe", hp: "340 cv", km: "12 500 km", year: "2025", body: "SUV Sport", img: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=400&q=80" }
+                    { 
+                        name: "Range Rover Sport", hp: "300 cv", km: "50", year: "2026", 
+                        images: [
+                            "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=500&q=80",
+                            "https://images.unsplash.com/photo-1606148047423-9993309a4d04?auto=format&fit=crop&w=500&q=80",
+                            "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=500&q=80"
+                        ]
+                    },
+                    { 
+                        name: "Porsche Cayenne Coupé", hp: "340 cv", km: "15 000", year: "2025", 
+                        images: [
+                            "https://images.unsplash.com/photo-1611859328053-3cbc9f9399f4?auto=format&fit=crop&w=500&q=80",
+                            "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=500&q=80",
+                            "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=500&q=80"
+                        ]
+                    }
                 ]
             }
         ];
 
-        let currentCar = 0;
+        let imageInterval;
 
         function login() {
             const plate = document.getElementById('plate').value;
-            const lastname = document.getElementById('lastname').value;
-            if(plate !== "" && lastname !== "") {
+            const name = document.getElementById('lastname').value;
+            if(plate && name) {
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('client-dashboard').style.display = 'block';
-                document.getElementById('nav-user').innerText = "ESPACE PRIVÉ | M. " + lastname.toUpperCase();
+                document.getElementById('nav-user').innerText = "ESPACE PRIVÉ | M. " + name.toUpperCase();
                 switchCar(0);
-            } else {
-                alert("Veuillez entrer vos identifiants.");
             }
         }
 
         function switchCar(idx) {
-            currentCar = idx;
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.getElementById('tab'+idx).classList.add('active');
-
             const car = garage[idx];
+            document.querySelectorAll('.tab').forEach((t, i) => t.className = (i === idx) ? 'tab active' : 'tab');
             document.getElementById('car-name').innerText = car.name;
             document.getElementById('car-hp').innerText = car.hp;
-            document.getElementById('car-km').innerText = car.km;
+            document.getElementById('car-km').innerText = car.km + " km";
             document.getElementById('car-year').innerText = car.year;
             document.getElementById('car-body').innerText = car.body;
             document.getElementById('main-car-img').style.backgroundImage = `url(${car.img})`;
+            document.getElementById('service-date').innerText = car.service;
 
-            // Détails extensible
-            document.getElementById('detail-engine').innerText = "Moteur: " + car.engine;
-            document.getElementById('detail-trans').innerText = "Boîte: " + car.trans;
-            document.getElementById('detail-seats').innerText = "Sièges: " + car.seats;
-            document.getElementById('detail-color').innerText = "Couleur: " + car.color;
-            document.getElementById('detail-audio').innerText = "Audio: " + car.audio;
-            document.getElementById('detail-safety').innerText = "Sécurité: " + car.safety;
+            // Reset Estimation
+            document.getElementById('est-km').value = "";
+            document.getElementById('est-state').selectedIndex = 0;
+            document.getElementById('est-result').innerText = "";
 
-            // Suggestions avec le nouveau bouton et classe
-            const suggestContainer = document.getElementById('suggest-container');
-            suggestContainer.innerHTML = "";
-            car.suggestions.forEach(s => {
-                suggestContainer.innerHTML += `
-                    <div class="suggest-card">
-                        <div class="suggest-img" style="background-image:url(${s.img})"></div>
-                        <h4 style="margin:0; font-size:0.9rem;">${s.name}</h4>
-                        <p style="font-size:0.7rem; color:#888;">${s.hp} | ${s.km} | ${s.year} | ${s.body}</p>
-                        <button class="btn-suggest">RÉSERVER UN ESSAI</button>
-                    </div>
-                `;
-            });
+            // Full Specs
+            document.getElementById('full-specs-content').innerHTML = `
+                <div class="spec-cat"><h4>Performance</h4>${car.specs.perf.map(s => `<div class="spec-item">${s[0]}<span class="spec-val">${s[1]}</span></div>`).join('')}</div>
+                <div class="spec-cat"><h4>Design</h4>${car.specs.design.map(s => `<div class="spec-item">${s[0]}<span class="spec-val">${s[1]}</span></div>`).join('')}</div>
+                <div class="spec-cat"><h4>Confort</h4>${car.specs.confort.map(s => `<div class="spec-item">${s[0]}<span class="spec-val">${s[1]}</span></div>`).join('')}</div>
+                <div class="spec-cat"><h4>Pratique</h4>${car.specs.pratique.map(s => `<div class="spec-item">${s[0]}<span class="spec-val">${s[1]}</span></div>`).join('')}</div>
+            `;
+
+            // Suggestions avec Galerie au survol
+            const suggestBox = document.getElementById('suggest-container');
+            suggestBox.innerHTML = car.suggestions.map((s, sIdx) => `
+                <div class="suggest-card" 
+                     onmouseenter="startGallery(this, ${idx}, ${sIdx})" 
+                     onmouseleave="stopGallery(this, ${idx}, ${sIdx})">
+                    <div class="suggest-img" style="background-image:url(${s.images[0]})"></div>
+                    <h4 style="margin:0; font-size:0.9rem;">${s.name}</h4>
+                    <p style="font-size:0.7rem; color:#888; margin:5px 0;">${s.hp} | ${s.km} km | ${s.year}</p>
+                    <button class="btn-suggest">Réserver un essai</button>
+                </div>
+            `).join('');
         }
 
-        function toggleMore() {
-            document.getElementById('more-details').classList.toggle('active');
+        function startGallery(element, carIdx, suggestIdx) {
+            const images = garage[carIdx].suggestions[suggestIdx].images;
+            const imgDiv = element.querySelector('.suggest-img');
+            let currentImg = 0;
+            
+            imageInterval = setInterval(() => {
+                currentImg = (currentImg + 1) % images.length;
+                imgDiv.style.backgroundImage = `url(${images[currentImg]})`;
+            }, 1200);
         }
+
+        function stopGallery(element, carIdx, suggestIdx) {
+            clearInterval(imageInterval);
+            const imgDiv = element.querySelector('.suggest-img');
+            imgDiv.style.backgroundImage = `url(${garage[carIdx].suggestions[suggestIdx].images[0]})`;
+        }
+
+        function toggleMore() { document.getElementById('more-details').classList.toggle('active'); }
 
         function calculateEstimation() {
-            const userKm = document.getElementById('est-km').value;
-            const stateCoeff = document.getElementById('est-state').value;
-            if(!userKm) return alert("Veuillez entrer le kilométrage actuel");
-
-            const car = garage[currentCar];
-            // Calcul : Valeur Base - (Usure kilométrique) le tout x coefficient d'état sévère pour le mauvais
-            let prix = (car.baseVal - (userKm * 0.45)) * stateCoeff;
-            
-            if(prix < 0) prix = 0;
-            document.getElementById('est-result').innerText = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(prix);
+            const km = document.getElementById('est-km').value;
+            const coeff = document.getElementById('est-state').value;
+            if(!km) return;
+            const car = garage[document.querySelector('.tab.active').id === "tab0" ? 0 : 1];
+            let res = (car.baseVal - (km * 0.40)) * coeff;
+            document.getElementById('est-result').innerText = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(res < 0 ? 0 : res);
         }
     </script>
 </body>
