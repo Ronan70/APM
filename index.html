@@ -3,161 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azur Premium Motor | Fidélisation Client</title>
+    <title>Azur Premium Motor | Connexion</title>
 
     <style>
-        /* Styles de base */
+        /* DESIGN GLOBAL */
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212; /* Noir très sombre */
-            color: #ffffff;
-            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* Barre de navigation */
+        /* SECTION CONNEXION */
+        #login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .login-card {
+            background: #1e1e1e;
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid #d4af37;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .login-card h2 { color: #d4af37; margin-bottom: 20px; }
+
+        .input-group { margin-bottom: 15px; text-align: left; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            background: #2b2b2b;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #d4af37;
+            color: black;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* SECTION ACCUEIL (Cachée au début) */
+        #home-page {
+            display: none; /* C'est ici qu'on cache la page */
+        }
+
         header {
-            background-color: #000000;
-            padding: 1rem 5%;
+            background: #000;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #d4af37; /* Ligne dorée */
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            border-bottom: 2px solid #d4af37;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        .logo span {
-            color: #d4af37;
-        }
-
-        /* Section principale (Hero) */
         .hero {
             height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=80');
             background-size: cover;
-            background-position: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            color: #d4af37;
-        }
-
-        /* Section Fidélisation */
-        .fidelisation-section {
-            padding: 50px 10%;
             text-align: center;
         }
 
-        .card-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background-color: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            width: 250px;
-            border: 1px solid #333;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: #d4af37;
-        }
-
-        /* Boutons */
-        .btn-premium {
-            background-color: #d4af37;
-            color: black;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .btn-premium:hover {
-            background-color: #f1c40f;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-        }
-
-        /* Message dynamique (JS) */
-        #welcome-message {
-            margin-top: 20px;
-            font-style: italic;
-            color: #d4af37;
-            min-height: 24px;
-        }
+        .gold { color: #d4af37; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">AZUR <span>PREMIUM</span> MOTOR</div>
-        <button class="btn-premium" onclick="showLoginMessage()">ESPACE CLIENT</button>
-    </header>
-
-    <main>
-        <section class="hero">
-            <h1>L'EXCELLENCE À VOS CÔTÉS</h1>
-            <p>Bienvenue Ronan. Améliorons ensemble la fidélité de nos clients.</p>
-            <div id="welcome-message"></div> </section>
-
-        <section class="fidelisation-section">
-            <h2>Nos leviers de fidélisation</h2>
-            <div class="card-container">
-                <div class="card">
-                    <h3>Suivi Entretien</h3>
-                    <p>Alertes automatiques pour vos révisions.</p>
-                </div>
-                <div class="card">
-                    <h3>Parrainage</h3>
-                    <p>Gagnez des avantages en recommandant APM.</p>
-                </div>
-                <div class="card">
-                    <h3>Conciergerie</h3>
-                    <p>Un service sur-mesure pour votre véhicule.</p>
-                </div>
+    <div id="login-page">
+        <div class="login-card">
+            <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;">
+                AZUR <span class="gold">PREMIUM</span> MOTOR
             </div>
+            <h2>Connexion Client</h2>
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="client@exemple.com">
+            </div>
+            <div class="input-group">
+                <label>Mot de passe</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+            <button class="btn-submit" onclick="handleLogin()">SE CONNECTER</button>
+            <p id="error-msg" style="color: red; font-size: 0.8rem; margin-top: 10px;"></p>
+        </div>
+    </div>
+
+    <div id="home-page">
+        <header>
+            <div class="logo">AZUR <span class="gold">PREMIUM</span> MOTOR</div>
+            <div id="user-display" style="font-weight: bold;"></div>
+        </header>
+
+        <section class="hero">
+            <h1>BIENVENUE DANS VOTRE ESPACE</h1>
+            <p>Ravi de vous revoir chez APM.</p>
+            <button class="btn-submit" style="width: auto; padding: 10px 30px;" onclick="location.reload()">DÉCONNEXION</button>
         </section>
-    </main>
+    </div>
 
     <script>
-        function showLoginMessage() {
-            // Cette fonction s'exécute quand on clique sur le bouton
-            const messageDiv = document.getElementById('welcome-message');
-            
-            // On simule une petite vérification
-            messageDiv.innerHTML = "Connexion en cours vers votre espace sécurisé...";
-            
-            // Après 1,5 seconde, on change le message
-            setTimeout(() => {
-                messageDiv.innerHTML = "Bienvenue dans l'univers Azur Premium Motor, cher client !";
-                alert("Bravo ! Ton premier script JS fonctionne. C'est le début de l'espace fidélisation.");
-            }, 1500);
+        function handleLogin() {
+            // On récupère ce que l'utilisateur a tapé
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-msg');
+
+            // On fait une petite vérification simple
+            if (email !== "" && password !== "") {
+                // Étape A : On cache la page de login
+                document.getElementById('login-page').style.display = 'none';
+                
+                // Étape B : On affiche la page d'accueil
+                document.getElementById('home-page').style.display = 'block';
+                
+                // Étape C : On affiche le mail de l'utilisateur en haut
+                document.getElementById('user-display').innerHTML = "👤 " + email;
+
+                alert("Connexion réussie !");
+            } else {
+                errorMsg.innerHTML = "Veuillez remplir tous les champs.";
+            }
         }
     </script>
 
