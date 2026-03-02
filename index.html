@@ -9,8 +9,9 @@
     <style>
         :root {
             --gold: #d4af37;
+            --gold-dark: #b8952e;
             --dark-bg: #050505;
-            --card-bg: rgba(20, 20, 20, 0.85);
+            --card-bg: rgba(18, 18, 18, 0.95);
             --text: #ffffff;
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -18,10 +19,32 @@
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
                         url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80') fixed center/cover;
             color: var(--text);
             min-height: 100vh;
+        }
+
+        /* --- BLOC LOGO APM EN PUR CSS --- */
+        /* C'est ce bloc que tu pourras remplacer par ton image officielle plus tard */
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .apm-badge-css {
+            width: 45px;
+            height: 50px;
+            background: transparent;
+            border: 2px solid var(--gold);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 16px;
+            letter-spacing: -1px;
         }
 
         /* --- CONNEXION --- */
@@ -31,40 +54,54 @@
             justify-content: center;
             align-items: center;
         }
-
         .login-card {
             background: var(--card-bg);
             padding: 40px;
-            border-radius: 15px;
+            border-radius: 20px;
             border: 1px solid var(--gold);
-            width: 350px;
+            width: 380px;
             text-align: center;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
         }
 
         /* --- DASHBOARD --- */
         #client-dashboard { display: none; }
-
         nav {
             background: rgba(0,0,0,0.95);
-            padding: 15px 5%;
+            padding: 10px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--gold);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 1000;
         }
 
-        .container {
-            max-width: 1300px;
-            margin: auto;
-            padding: 40px 20px;
+        .container { max-width: 1400px; margin: auto; padding: 30px 20px; }
+
+        /* --- SELECTEUR VOITURE (Tabs) --- */
+        .car-tabs { display: flex; gap: 10px; margin-bottom: 25px; }
+        .tab {
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            color: #888;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        .tab.active {
+            background: var(--card-bg);
+            border-color: var(--gold);
+            border-bottom: 1px solid var(--card-bg);
+            color: var(--gold);
+            transform: translateY(-2px);
         }
 
-        /* --- GRILLE PRINCIPALE (2/3 - 1/3) --- */
-        .main-layout {
+        /* --- LAYOUT PRINCIPAL --- */
+        .main-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 30px;
@@ -75,232 +112,313 @@
             background: var(--card-bg);
             border-radius: 15px;
             border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 30px;
+            padding: 25px;
             backdrop-filter: blur(10px);
-            transition: var(--transition);
+            margin-bottom: 30px;
         }
 
-        /* --- FENETRE GARAGE (L'EXTENSIBLE) --- */
-        .garage-card {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .car-hero {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 20px;
-        }
-
-        .car-photo-main {
-            width: 50%;
-            height: 250px;
-            background: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80') center/cover;
-            border-radius: 10px;
-            border: 1px solid var(--gold);
-        }
-
-        .car-basic-info { width: 50%; }
-
-        .info-tag {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.1);
+        .card-title {
             color: var(--gold);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            display: block;
             font-weight: bold;
         }
 
-        /* Détails cachés */
+        /* --- GARAGE --- */
+        .car-display { display: flex; gap: 30px; }
+        .car-img {
+            width: 45%; height: 220px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid #333;
+        }
+        .car-main-specs { width: 55%; }
+
         .more-details {
-            max-height: 0;
-            opacity: 0;
+            max-height: 0; opacity: 0; overflow: hidden;
             transition: var(--transition);
-            border-top: 1px solid rgba(212, 175, 55, 0);
-            margin-top: 0;
+            border-top: 0px solid transparent;
         }
-
         .more-details.active {
-            max-height: 1000px;
-            opacity: 1;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            max-height: 800px; opacity: 1;
+            margin-top: 25px; padding-top: 25px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        .specs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+        /* --- SUGGESTIONS --- */
+        .suggest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .suggest-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px; padding: 15px;
+            border: 1px solid #222;
+            transition: var(--transition);
         }
-
-        .spec-cat h4 { color: var(--gold); border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .spec-item { display: flex; justify-content: space-between; margin: 10px 0; font-size: 0.9rem; }
-        .spec-label { color: #888; }
-
-        /* --- COLONNE DROITE --- */
-        .side-column {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+        .suggest-card:hover { border-color: rgba(212, 175, 55, 0.4); transform: translateY(-3px); }
+        .suggest-img { height: 120px; border-radius: 5px; margin-bottom: 10px; background-size: cover; background-position: center; }
 
         /* --- BOUTONS --- */
+        input, select {
+            width: 100%; padding: 12px; margin: 10px 0;
+            background: rgba(255,255,255,0.07); border: 1px solid #333;
+            color: white; border-radius: 5px; font-family: inherit; font-size: 0.9rem;
+        }
         .btn {
-            background: var(--gold);
+            background: var(--gold); color: black; border: none;
+            padding: 14px; border-radius: 6px; font-weight: 700;
+            cursor: pointer; width: 100%; text-transform: uppercase;
+            transition: 0.3s; font-size: 0.8rem;
+        }
+        .btn:hover { background: var(--gold-dark); transform: translateY(-2px); }
+        
+        .btn-outline {
+            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+        }
+
+        /* --- LE BOUTON D'ESSAI (Le survol de fou !) --- */
+        .btn-suggest {
+            background: white; /* Fond blanc par défaut */
             color: black;
             border: none;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: 700;
             cursor: pointer;
             width: 100%;
             text-transform: uppercase;
+            font-size: 0.7rem;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+        
+        /* C'est cet effet que tu vas adorer */
+        .btn-suggest:hover {
+            background: var(--gold); /* Devient doré au survol */
+            color: black;
+            transform: translateY(-3px); /* Se lève légèrement */
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); /* Douce lueur dorée */
+        }
+
+        /* --- WHATSAPP --- */
+        .whatsapp-btn {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25D366; color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            cursor: pointer; z-index: 1000; text-decoration: none;
             transition: 0.3s;
         }
+        .whatsapp-btn:hover { transform: scale(1.1); }
 
-        .btn:hover { background: #f1c40f; transform: translateY(-2px); }
-
-        .btn-plus {
-            background: transparent;
-            color: var(--gold);
-            border: 1px solid var(--gold);
-            margin-top: 20px;
-        }
-
-        input {
-            width: 100%; padding: 12px; margin: 10px 0;
-            background: rgba(255,255,255,0.05); border: 1px solid #444; color: white; border-radius: 5px;
-        }
-
-        @media (max-width: 900px) {
-            .main-layout { grid-template-columns: 1fr; }
-            .car-hero { flex-direction: column; }
-            .car-photo-main, .car-basic-info { width: 100%; }
-        }
+        @media (max-width: 1000px) { .main-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <div id="login-screen">
         <div class="login-card">
-            <h2 style="font-weight: 300;">APM <span style="color:var(--gold); font-weight:700;">PRIVÉ</span></h2>
-            <input type="email" id="email" placeholder="Email">
-            <input type="password" id="pass" placeholder="Mot de passe">
-            <button class="btn" onclick="entrer()">Se Connecter</button>
+            <div class="logo-block" style="justify-content: center; margin-bottom: 30px;">
+                <div class="apm-badge-css">APM</div>
+                <div style="text-align: left; line-height: 1;">
+                    <span style="font-weight: 700; letter-spacing: 2px;">AZUR PREMIUM</span><br>
+                    <span style="font-weight: 300; font-size: 0.8rem; color: var(--gold);">MOTOR PRIVÉ</span>
+                </div>
+            </div>
+            <input type="text" id="plate" placeholder="Plaque (ex: AA-123-BB)">
+            <input type="text" id="lastname" placeholder="Nom de famille">
+            <button class="btn" onclick="login()">Se Connecter</button>
         </div>
     </div>
 
     <div id="client-dashboard">
         <nav>
-            <div style="font-weight:700; letter-spacing:2px;">AZUR <span style="color:var(--gold);">PREMIUM</span> MOTOR</div>
-            <div id="user-tag" style="color:var(--gold); font-size:0.8rem;"></div>
+            <div class="logo-block">
+                <div class="apm-badge-css">APM</div>
+                <div style="font-weight: 700; font-size: 0.9rem;">AZUR <span style="color:var(--gold)">PREMIUM</span> MOTOR</div>
+            </div>
+            <div id="nav-user" style="font-size: 0.8rem; border-left: 1px solid #333; padding-left: 15px;"></div>
         </nav>
 
         <div class="container">
-            <h1 style="font-weight:300; margin-bottom:40px;">Ravi de vous revoir, <span id="client-name" style="color:var(--gold); font-weight:700;"></span></h1>
+            <h1 style="font-weight: 300; margin-bottom: 30px;">Mon <span style="color:var(--gold); font-weight:700;">Garage</span></h1>
 
-            <div class="main-layout">
+            <div class="car-tabs">
+                <div class="tab active" id="tab0" onclick="switchCar(0)">VÉHICULE 1</div>
+                <div class="tab" id="tab1" onclick="switchCar(1)">VÉHICULE 2</div>
+            </div>
+
+            <div class="main-grid">
                 
-                <div class="card garage-card">
-                    <h3>Mon Garage Privé</h3>
-                    
-                    <div class="car-hero">
-                        <div class="car-photo-main"></div>
-                        <div class="car-basic-info">
-                            <span class="info-tag">VÉHICULE ACTUEL</span>
-                            <h2 style="margin: 0 0 15px 0; font-size: 2rem;">Porsche 911 Carrera S</h2>
-                            
-                            <div class="spec-item"><span class="spec-label">Puissance :</span> <span>450 cv</span></div>
-                            <div class="spec-item"><span class="spec-label">Kilométrage :</span> <span>12 450 km</span></div>
-                            <div class="spec-item"><span class="spec-label">Carrosserie :</span> <span>Coupé</span></div>
-                            <div class="spec-item"><span class="spec-label">Transmission :</span> <span>PDK 8 rapports</span></div>
-                        </div>
-                    </div>
-
-                    <button class="btn btn-plus" id="btn-toggle" onclick="toggleDetails()">+ Plus d'informations</button>
-
-                    <div class="more-details" id="details-box">
-                        <div class="specs-grid">
-                            <div class="spec-cat">
-                                <h4>Performance & Moteur</h4>
-                                <div class="spec-item"><span class="spec-label">Moteur</span><span>Flat-6 3.0L Bi-Turbo</span></div>
-                                <div class="spec-item"><span class="spec-label">0 à 100 km/h</span><span>3.7 secondes</span></div>
-                                <div class="spec-item"><span class="spec-label">Vitesse Max</span><span>308 km/h</span></div>
-                                <div class="spec-item"><span class="spec-label">Couple</span><span>530 Nm</span></div>
-                            </div>
-                            <div class="spec-cat">
-                                <h4>Design & Esthétique</h4>
-                                <div class="spec-item"><span class="spec-label">Couleur Ext.</span><span>Gris Quartz Métallisé</span></div>
-                                <div class="spec-item"><span class="spec-label">Couleur Int.</span><span>Cuir Noir & Alcantara</span></div>
-                                <div class="spec-item"><span class="spec-label">Jantes</span><span>20/21" RS Spyder</span></div>
-                                <div class="spec-item"><span class="spec-label">Étriers de frein</span><span>Rouge Porsche</span></div>
-                            </div>
-                            <div class="spec-cat">
-                                <h4>Confort & Options</h4>
-                                <div class="spec-item"><span class="spec-label">Sièges</span><span>Sport Plus Électriques</span></div>
-                                <div class="spec-item"><span class="spec-label">Système Audio</span><span>BOSE® Surround Sound</span></div>
-                                <div class="spec-item"><span class="spec-label">Toit</span><span>Ouvrant Panoramique</span></div>
-                                <div class="spec-item"><span class="spec-label">Éclairage</span><span>Phares Matrix LED</span></div>
-                            </div>
-                            <div class="spec-cat">
-                                <h4>Infos Pratiques</h4>
-                                <div class="spec-item"><span class="spec-label">Crit'Air</span><span>Classe 1</span></div>
-                                <div class="spec-item"><span class="spec-label">Émissions</span><span>205 g/km</span></div>
-                                <div class="spec-item"><span class="spec-label">Garantie</span><span>Porsche Approved</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="side-column">
+                <div class="left-col">
                     <div class="card">
-                        <h3 style="font-size:0.8rem; color:var(--gold);">Entretien</h3>
-                        <p style="margin-top:10px;">Prochaine révision :</p>
-                        <h4 style="margin:5px 0;">15 Septembre 2026</h4>
-                        <div style="background:#333; height:4px; border-radius:2px; margin:15px 0;">
-                            <div style="background:var(--gold); width:20%; height:100%;"></div>
+                        <span class="card-title">Fiche d'identité du véhicule</span>
+                        <div class="car-display">
+                            <div class="car-img" id="main-car-img"></div>
+                            <div class="car-main-specs">
+                                <h2 id="car-name" style="margin:0 0 15px 0;">---</h2>
+                                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9rem;">
+                                    <p style="color:#888;">Puissance: <b style="color:white" id="car-hp">---</b></p>
+                                    <p style="color:#888;">Kilométrage: <b style="color:white" id="car-km">---</b></p>
+                                    <p style="color:#888;">Carrosserie: <b style="color:white" id="car-body">---</b></p>
+                                    <p style="color:#888;">Année: <b style="color:white" id="car-year">---</b></p>
+                                </div>
+                                <button class="btn btn-outline" style="margin-top: 20px;" onclick="toggleMore()">Plus d'informations</button>
+                            </div>
                         </div>
-                        <button class="btn" style="font-size:0.7rem;">Réserver un créneau</button>
+
+                        <div class="more-details" id="more-details">
+                            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                                <div>
+                                    <h4 style="color:var(--gold); font-size: 0.8rem;">PERFORMANCE</h4>
+                                    <p style="font-size:0.8rem; color:#888;" id="detail-engine">Moteur: ---</p>
+                                    <p style="font-size:0.8rem; color:#888;" id="detail-trans">Boîte: ---</p>
+                                </div>
+                                <div>
+                                    <h4 style="color:var(--gold); font-size: 0.8rem;">DESIGN INT.</h4>
+                                    <p style="font-size:0.8rem; color:#888;" id="detail-seats">Sièges: ---</p>
+                                    <p style="font-size:0.8rem; color:#888;" id="detail-color">Couleur: ---</p>
+                                </div>
+                                <div>
+                                    <h4 style="color:var(--gold); font-size: 0.8rem;">OPTIONS</h4>
+                                    <p style="font-size:0.8rem; color:#888;" id="detail-audio">Audio: ---</p>
+                                    <p style="font-size:0.8rem; color:#888;" id="detail-safety">Sécurité: ---</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card">
-                        <h3 style="font-size:0.8rem; color:var(--gold);">Parrainage</h3>
-                        <p style="font-size:0.8rem; margin:10px 0;">Faites profiter vos proches de l'expertise APM.</p>
-                        <div style="border:1px dashed var(--gold); padding:10px; text-align:center; font-weight:bold; color:var(--gold);">
-                            CODE : APM-RONAN-2026
-                        </div>
+                        <span class="card-title">Suggestions pour Vous</span>
+                        <div class="suggest-grid" id="suggest-container">
+                            </div>
                     </div>
                 </div>
 
-            </div> </div>
+                <div class="right-col">
+                    <div class="card">
+                        <span class="card-title">Entretien & Maintenance</span>
+                        <p style="font-size: 0.9rem;">Prochaine révision : <br><b>15 Septembre 2026</b></p>
+                        <button class="btn" style="margin-top:15px; font-size: 0.7rem;">Réserver l'atelier</button>
+                    </div>
+
+                    <div class="card">
+                        <span class="card-title">Parrainage Premium</span>
+                        <p style="font-size: 0.8rem;">Code exclusif : <b style="color:var(--gold)">APM-PRIVILEGE</b></p>
+                    </div>
+
+                    <div class="card">
+                        <span class="card-title">Estimer mon véhicule actuel</span>
+                        <p style="font-size: 0.8rem; color:#888; margin-bottom: 15px;">Mise à jour instantanée.</p>
+                        <input type="number" id="est-km" placeholder="Kilométrage actuel">
+                        <select id="est-state">
+                            <option value="1">État Excellent</option>
+                            <option value="0.95">Bon état</option>
+                            <option value="0.85">État Moyen</option>
+                            <option value="0.6">Mauvais état (Frais à prévoir)</option>
+                        </select>
+                        <button class="btn" onclick="calculateEstimation()">Calculer l'estimation</button>
+                        <div id="est-result" style="margin-top: 15px; font-weight: 700; color: var(--gold); text-align: center; font-size: 1.2rem;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
+    <a href="#" class="whatsapp-btn">
+        <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-2.32 0-4.591.899-6.41 2.505-3.908 3.434-4.509 9.427-1.366 13.57l-1.012 3.703 3.789-.994c1.517.822 3.225 1.254 4.978 1.255h.005c5.307 0 9.627-4.32 9.63-9.63 0-2.573-1.002-4.991-2.822-6.812-1.82-1.821-4.238-2.825-6.812-2.827h-.02zm6.336 13.243c-.258.734-1.287 1.34-1.782 1.408-.45.061-.892.272-2.907-.538-2.584-1.038-4.257-3.664-4.39-3.837-.128-.173-1.077-1.432-1.077-2.729 0-1.297.689-1.933.931-2.191.242-.258.534-.323.712-.323.178 0 .356.002.508.01.164.008.388-.063.606.463.224.542.766 1.868.832 2.001.066.132.11.286.022.463-.088.176-.132.286-.264.44-.132.154-.278.344-.396.463-.132.132-.27.275-.116.54.154.264.683 1.124 1.464 1.82.999.89 1.838 1.166 2.094 1.297.264.132.418.11.572-.066.154-.176.66-.77.836-1.034.176-.264.352-.22.594-.132.242.088 1.541.727 1.805.859.264.132.44.198.506.309.066.11.066.638-.192 1.372z"/></svg>
+    </a>
+
     <script>
-        function entrer() {
-            const mail = document.getElementById('email').value;
-            if(mail !== "") {
+        const garage = [
+            {
+                name: "Porsche 911 Carrera S", hp: "450 cv", km: "12 450 km", year: "2024", body: "Coupé", img: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80",
+                baseVal: 135000, engine: "Flat-6 3.0L Bi-Turbo", trans: "PDK 8 rapports", seats: "Sport Plus Cuir", color: "Gris Quartz", audio: "BOSE Surround", safety: "InnoDrive",
+                suggestions: [
+                    { name: "Porsche Taycan GTS", hp: "598 cv", km: "5 200 km", year: "2025", body: "Berline Élec", img: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=400&q=80" },
+                    { name: "Audi RS6 Avant", hp: "600 cv", km: "18 900 km", year: "2024", body: "Break Sport", img: "https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&w=400&q=80" }
+                ]
+            },
+            {
+                name: "Audi Q8 S-Line", hp: "286 cv", km: "31 200 km", year: "2024", body: "SUV Luxe", img: "https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&w=800&q=80",
+                baseVal: 85000, engine: "V6 3.0L TDI", trans: "Tiptronic 8", seats: "S-Line Alcantara", color: "Noir Mythic", audio: "Bang & Olufsen", safety: "Pre-Sense 360",
+                suggestions: [
+                    { name: "Range Rover Sport", hp: "300 cv", km: "100 km", year: "2026", body: "SUV Luxe", img: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=400&q=80" },
+                    { name: "Porsche Cayenne Coupe", hp: "340 cv", km: "12 500 km", year: "2025", body: "SUV Sport", img: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=400&q=80" }
+                ]
+            }
+        ];
+
+        let currentCar = 0;
+
+        function login() {
+            const plate = document.getElementById('plate').value;
+            const lastname = document.getElementById('lastname').value;
+            if(plate !== "" && lastname !== "") {
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('client-dashboard').style.display = 'block';
-                const name = mail.split('@')[0];
-                document.getElementById('client-name').innerText = name.charAt(0).toUpperCase() + name.slice(1);
-                document.getElementById('user-tag').innerText = "ESPACE CLIENT 👤 " + mail;
+                document.getElementById('nav-user').innerText = "ESPACE PRIVÉ | M. " + lastname.toUpperCase();
+                switchCar(0);
+            } else {
+                alert("Veuillez entrer vos identifiants.");
             }
         }
 
-        function toggleDetails() {
-            const box = document.getElementById('details-box');
-            const btn = document.getElementById('btn-toggle');
+        function switchCar(idx) {
+            currentCar = idx;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('tab'+idx).classList.add('active');
+
+            const car = garage[idx];
+            document.getElementById('car-name').innerText = car.name;
+            document.getElementById('car-hp').innerText = car.hp;
+            document.getElementById('car-km').innerText = car.km;
+            document.getElementById('car-year').innerText = car.year;
+            document.getElementById('car-body').innerText = car.body;
+            document.getElementById('main-car-img').style.backgroundImage = `url(${car.img})`;
+
+            // Détails extensible
+            document.getElementById('detail-engine').innerText = "Moteur: " + car.engine;
+            document.getElementById('detail-trans').innerText = "Boîte: " + car.trans;
+            document.getElementById('detail-seats').innerText = "Sièges: " + car.seats;
+            document.getElementById('detail-color').innerText = "Couleur: " + car.color;
+            document.getElementById('detail-audio').innerText = "Audio: " + car.audio;
+            document.getElementById('detail-safety').innerText = "Sécurité: " + car.safety;
+
+            // Suggestions avec le nouveau bouton et classe
+            const suggestContainer = document.getElementById('suggest-container');
+            suggestContainer.innerHTML = "";
+            car.suggestions.forEach(s => {
+                suggestContainer.innerHTML += `
+                    <div class="suggest-card">
+                        <div class="suggest-img" style="background-image:url(${s.img})"></div>
+                        <h4 style="margin:0; font-size:0.9rem;">${s.name}</h4>
+                        <p style="font-size:0.7rem; color:#888;">${s.hp} | ${s.km} | ${s.year} | ${s.body}</p>
+                        <button class="btn-suggest">RÉSERVER UN ESSAI</button>
+                    </div>
+                `;
+            });
+        }
+
+        function toggleMore() {
+            document.getElementById('more-details').classList.toggle('active');
+        }
+
+        function calculateEstimation() {
+            const userKm = document.getElementById('est-km').value;
+            const stateCoeff = document.getElementById('est-state').value;
+            if(!userKm) return alert("Veuillez entrer le kilométrage actuel");
+
+            const car = garage[currentCar];
+            // Calcul : Valeur Base - (Usure kilométrique) le tout x coefficient d'état sévère pour le mauvais
+            let prix = (car.baseVal - (userKm * 0.45)) * stateCoeff;
             
-            box.classList.toggle('active');
-            
-            if(box.classList.contains('active')) {
-                btn.innerText = "- Réduire les informations";
-            } else {
-                btn.innerText = "+ Plus d'informations";
-            }
+            if(prix < 0) prix = 0;
+            document.getElementById('est-result').innerText = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(prix);
         }
     </script>
 </body>
