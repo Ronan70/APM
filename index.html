@@ -10,8 +10,7 @@
         :root {
             --gold: #d4af37;
             --dark-bg: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --input-bg: #252525;
+            --card-bg: rgba(26, 26, 26, 0.9); /* Transparent pour voir le fond */
             --text: #ffffff;
         }
 
@@ -19,9 +18,13 @@
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: var(--dark-bg);
+            /* IMAGE D'ARRIÈRE-PLAN SUR TOUT LE SITE */
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                              url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--text);
-            display: flex;
-            flex-direction: column;
             min-height: 100vh;
         }
 
@@ -30,8 +33,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-grow: 1;
-            padding: 20px;
+            height: 100vh;
         }
 
         .login-card {
@@ -39,56 +41,29 @@
             padding: 40px;
             border-radius: 15px;
             border: 1px solid var(--gold);
-            width: 100%;
-            max-width: 400px;
+            width: 350px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px); /* Effet de flou moderne */
         }
 
-        .login-card h2 {
-            margin-bottom: 30px;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .login-card h2 span { color: var(--gold); font-weight: 700; }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--gold);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 0.7rem; color: var(--gold); margin-bottom: 5px; text-transform: uppercase; }
 
         input {
             width: 100%;
             padding: 12px;
-            background: var(--input-bg);
-            border: 1px solid #333;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #444;
             color: white;
             border-radius: 5px;
             box-sizing: border-box;
-            outline: none;
-            transition: 0.3s;
         }
 
-        input:focus { border-color: var(--gold); }
-
-        /* --- ESPACE CLIENT (Caché par défaut) --- */
-        #client-dashboard {
-            display: none; /* On cache l'espace client au début */
-        }
+        /* --- ESPACE CLIENT --- */
+        #client-dashboard { display: none; }
 
         nav {
-            background-color: #000;
+            background-color: rgba(0,0,0,0.9);
             padding: 20px 5%;
             display: flex;
             justify-content: space-between;
@@ -108,128 +83,104 @@
             background: var(--card-bg);
             padding: 25px;
             border-radius: 12px;
-            border: 1px solid #333;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .card h3 { color: var(--gold); text-transform: uppercase; font-size: 0.9rem; margin-top: 0; }
 
-        /* --- BOUTONS --- */
         .btn {
             background: var(--gold);
             color: black;
             border: none;
-            padding: 15px 20px;
+            padding: 15px;
             border-radius: 5px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .btn:hover { background: #f1c40f; transform: scale(1.02); }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--gold);
-            border: 1px solid var(--gold);
             margin-top: 10px;
-            padding: 10px;
         }
 
-        .car-image {
+        .car-photo {
             width: 100%;
             height: 150px;
             background: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80') center/cover;
             border-radius: 8px;
             margin: 15px 0;
         }
+
+        .gold-text { color: var(--gold); font-weight: 700; }
     </style>
 </head>
 <body>
 
     <div id="login-screen">
         <div class="login-card">
-            <div style="margin-bottom: 20px; font-weight: 700; letter-spacing: 2px;">
-                AZUR <span style="color: var(--gold);">PREMIUM</span> MOTOR
-            </div>
-            <h2>Connexion <span>Privée</span></h2>
-            
+            <h2 style="font-weight: 300; letter-spacing: 2px;">APM <span class="gold-text">PRIVÉ</span></h2>
             <div class="input-group">
-                <label>Adresse Mail</label>
-                <input type="email" id="user-email" placeholder="votre-nom@exemple.com">
+                <label>Identifiant</label>
+                <input type="email" id="email" placeholder="votre-email@exemple.com">
             </div>
-            
             <div class="input-group">
                 <label>Mot de passe</label>
-                <input type="password" id="user-pass" placeholder="••••••••">
+                <input type="password" id="pass" placeholder="••••••••">
             </div>
-            
-            <button class="btn" onclick="connecter()">Se Connecter</button>
-            
-            <p id="error-msg" style="color: #e74c3c; font-size: 0.8rem; margin-top: 15px; display: none;">
-                Veuillez remplir tous les champs.
-            </p>
+            <button class="btn" onclick="entrer()">Connexion</button>
         </div>
     </div>
 
     <div id="client-dashboard">
         <nav>
-            <div style="font-weight: 700; letter-spacing: 2px;">AZUR <span style="color: var(--gold);">PREMIUM</span> MOTOR</div>
-            <div id="display-name" style="font-size: 0.9rem; color: var(--gold);"></div>
+            <div style="font-weight: 700; letter-spacing: 2px;">AZUR <span class="gold-text">PREMIUM</span> MOTOR</div>
+            <div id="top-user" style="color: var(--gold);"></div>
         </nav>
 
         <div class="container">
-            <h1 style="font-weight: 300; margin-bottom: 40px;">Ravi de vous revoir, <span id="user-name" style="color: var(--gold); font-weight: 700;"></span></h1>
+            <h1 style="font-weight: 300; margin-bottom: 40px;">Ravi de vous revoir, <span id="user-welcome" class="gold-text"></span></h1>
             
             <div class="grid">
                 <div class="card">
-                    <h3>Mon Véhicule</h3>
-                    <div class="car-image"></div>
-                    <p><strong>BMW M4 Competition</strong></p>
-                    <p style="color: #888; font-size: 0.8rem;">Immatriculation : AA-123-BB</p>
+                    <h3>Mon Garage Privé</h3>
+                    <div class="car-photo"></div>
+                    <p><strong>Porsche 911 Carrera S</strong></p>
+                    <p style="font-size: 0.8rem; color: #bbb;">Date d'acquisition : 15/01/2026</p>
                 </div>
 
                 <div class="card">
-                    <h3>Services & Garantie</h3>
-                    <p>Statut : <span style="color: #27ae60;">Active</span></p>
-                    <p style="font-size: 0.8rem;">Prochaine révision : 15 Septembre 2025</p>
-                    <button class="btn btn-outline">Prendre RDV Atelier</button>
+                    <h3>Prochain Entretien</h3>
+                    <p>Statut : <span style="color: #27ae60; font-weight: bold;">À jour</span></p>
+                    <p>Prévu le : <span class="gold-text">15 Septembre 2026</span></p>
+                    <p style="font-size: 0.8rem; color: #bbb;">Nous vous contacterons 1 mois avant.</p>
+                    <button class="btn" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">Prendre rendez-vous</button>
                 </div>
 
                 <div class="card">
-                    <h3>Parrainage Premium</h3>
-                    <p>Offrez 500€ de remise à un proche et recevez un cadeau exclusif.</p>
-                    <button class="btn">Obtenir mon code</button>
+                    <h3>Fidélité & Parrainage</h3>
+                    <p>Votre code privilège : <span class="gold-text">APM-2026-XP</span></p>
+                    <p style="font-size: 0.8rem;">Partagez ce code et recevez 300€ de bon d'achat atelier.</p>
+                    <button class="btn">Générer un lien</button>
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 50px;">
-                <button onclick="location.reload()" style="background: none; border: none; color: #555; cursor: pointer; text-decoration: underline;">Se déconnecter</button>
-            </div>
+            <p style="text-align: center; margin-top: 40px; font-size: 0.8rem; color: #555;">
+                Aujourd'hui : 2 Février 2026 | Session sécurisée
+            </p>
         </div>
     </div>
 
     <script>
-        function connecter() {
-            const email = document.getElementById('user-email').value;
-            const pass = document.getElementById('user-pass').value;
-            const error = document.getElementById('error-msg');
-
-            if (email !== "" && pass !== "") {
-                // On cache la connexion
+        function entrer() {
+            const mail = document.getElementById('email').value;
+            if(mail !== "") {
                 document.getElementById('login-screen').style.display = 'none';
-                
-                // On affiche l'espace client
                 document.getElementById('client-dashboard').style.display = 'block';
                 
-                // On personnalise avec le début de l'adresse mail (ex: ronan@gmail.com -> ronan)
-                const name = email.split('@')[0];
-                document.getElementById('user-name').innerText = name.charAt(0).toUpperCase() + name.slice(1);
-                document.getElementById('display-name').innerText = "👤 " + email;
+                const prenom = mail.split('@')[0];
+                document.getElementById('user-welcome').innerText = prenom.charAt(0).toUpperCase() + prenom.slice(1);
+                document.getElementById('top-user').innerText = "👤 " + mail;
             } else {
-                error.style.display = 'block';
+                alert("Veuillez entrer vos identifiants.");
             }
         }
     </script>
