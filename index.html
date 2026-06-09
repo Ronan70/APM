@@ -1,347 +1,441 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espace Privé | Azur Premium Motor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --gold: #d4af37;
-            --gold-dark: #b8952e;
-            --dark-bg: #050505;
-            --card-bg: rgba(18, 18, 18, 0.95);
-            --text: #ffffff;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
 
-        body {
-            margin: 0; font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
-                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80') fixed center/cover;
-            color: var(--text); min-height: 100vh;
-        }
-
-        /* --- LOGO APM CSS --- */
-        .logo-block { display: flex; align-items: center; gap: 15px; }
-        .apm-badge-css {
-            width: 45px; height: 50px; border: 2px solid var(--gold);
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex; justify-content: center; align-items: center;
-            font-weight: 700; color: var(--gold); font-size: 16px;
-        }
-
-        /* --- CONNEXION --- */
-        #login-screen { height: 100vh; display: flex; justify-content: center; align-items: center; }
-        .login-card {
-            background: var(--card-bg); padding: 40px; border-radius: 20px;
-            border: 1px solid var(--gold); width: 380px; text-align: center; backdrop-filter: blur(20px);
-        }
-
-        /* --- DASHBOARD --- */
-        #client-dashboard { display: none; }
-        nav {
-            background: rgba(0,0,0,0.95); padding: 10px 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000;
-        }
-
-        .container { max-width: 1400px; margin: auto; padding: 30px 20px; }
-        .car-tabs { display: flex; gap: 10px; margin-bottom: 25px; }
-        .tab {
-            padding: 12px 25px; background: rgba(255,255,255,0.05); border: 1px solid #333;
-            color: #888; border-radius: 8px 8px 0 0; cursor: pointer; transition: 0.3s;
-            font-weight: bold; font-size: 0.8rem; text-transform: uppercase;
-        }
-        .tab.active {
-            background: var(--card-bg); border-color: var(--gold);
-            border-bottom: 1px solid var(--card-bg); color: var(--gold); transform: translateY(-2px);
-        }
-
-        .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; align-items: start; }
-        .card {
-            background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 25px; backdrop-filter: blur(10px); margin-bottom: 30px;
-        }
-        .card-title { color: var(--gold); text-transform: uppercase; font-size: 0.85rem; font-weight: bold; margin-bottom: 20px; display: block; }
-
-        /* --- GARAGE --- */
-        .car-display { display: flex; gap: 30px; }
-        .car-img {
-            width: 45%; height: 250px; border-radius: 10px;
-            background-size: cover; background-position: center; border: 1px solid #333;
-        }
-        .car-main-specs { width: 55%; }
-        .more-details { max-height: 0; opacity: 0; overflow: hidden; transition: var(--transition); }
-        .more-details.active { max-height: 1000px; opacity: 1; margin-top: 25px; padding-top: 25px; border-top: 1px solid rgba(212, 175, 55, 0.2); }
-
-        .specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .spec-cat h4 { color: var(--gold); font-size: 0.8rem; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-        .spec-item { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 8px; color: #bbb; }
-        .spec-val { color: white; font-weight: bold; }
-
-        /* --- SUGGESTIONS --- */
-        .suggest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .suggest-card {
-            background: rgba(255,255,255,0.03); border-radius: 10px; padding: 15px;
-            border: 1px solid #222; transition: var(--transition); overflow: hidden;
-        }
-        .suggest-img { 
-            height: 130px; border-radius: 5px; margin-bottom: 10px; 
-            background-size: cover; background-position: center; 
-            transition: background-image 0.4s ease-in-out;
-        }
-
-        /* --- INPUTS & SELECTS --- */
-        input, select {
-            width: 100%; padding: 12px; margin: 10px 0; box-sizing: border-box;
-            background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-family: inherit;
-        }
-        select option { background: #1a1a1a; color: white; }
-
-        .btn {
-            background: var(--gold); color: black; border: none; padding: 14px;
-            border-radius: 6px; font-weight: 700; cursor: pointer; width: 100%;
-            text-transform: uppercase; transition: 0.3s; font-size: 0.8rem;
-        }
-        .btn-suggest {
-            background: white; color: black; border: none; padding: 10px;
-            border-radius: 6px; font-weight: 700; cursor: pointer; width: 100%;
-            text-transform: uppercase; font-size: 0.7rem; margin-top: 10px; transition: 0.3s;
-        }
-        .btn-suggest:hover { background: var(--gold); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
-
-        .whatsapp-btn {
-            position: fixed; bottom: 30px; right: 30px; background: #25D366;
-            width: 60px; height: 60px; border-radius: 50%; display: flex;
-            justify-content: center; align-items: center; z-index: 1000;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="login-screen">
-        <div class="login-card">
-            <div class="logo-block" style="justify-content: center; margin-bottom: 30px;">
-                <div class="apm-badge-css">APM</div>
-                <div style="text-align: left; line-height: 1;">
-                    <span style="font-weight: 700; letter-spacing: 2px;">AZUR PREMIUM</span><br>
-                    <span style="font-weight: 300; font-size: 0.8rem; color: var(--gold);">MOTOR PRIVÉ</span>
+                </div>
+                <div class="grid grid-cols-2 gap-4 bg-premium-card/80 border border-premium-border p-4 rounded-xl backdrop-blur">
+                    <div class="text-center px-2">
+                        <span class="block text-xs text-gray-400 uppercase tracking-wider mb-1">Points Club</span>
+                        <span class="text-xl font-bold text-gold-400">2 450 pts</span>
+                    </div>
+                    <div class="text-center px-2 border-l border-premium-border">
+                        <span class="block text-xs text-gray-400 uppercase tracking-wider mb-1">Statut Client</span>
+                        <span class="text-xl font-bold text-white tracking-wide">Platine</span>
+                    </div>
                 </div>
             </div>
-            <input type="text" id="plate" placeholder="AB-123-CD" maxlength="9">
-            <input type="text" id="lastname" placeholder="Votre nom de famille">
-            <button class="btn" onclick="login()">Se Connecter</button>
         </div>
-    </div>
 
-    <div id="client-dashboard">
-        <nav>
-            <div class="logo-block">
-                <div class="apm-badge-css">APM</div>
-                <div style="font-weight: 700; font-size: 0.9rem;">AZUR <span style="color:var(--gold)">PREMIUM</span> MOTOR</div>
-            </div>
-            <div id="nav-user" style="font-size: 0.8rem; border-left: 1px solid #333; padding-left: 15px; color: var(--gold); font-weight: bold;"></div>
-        </nav>
+        <!-- Navigation Onglets -->
+        <div class="border-b border-premium-border mb-8 overflow-x-auto">
+            <nav class="flex space-x-8 min-w-[600px]" aria-label="Tabs">
+                <button onclick="switchTab('garage')" id="tab-button-garage" class="tab-btn pb-4 px-1 border-b-2 border-gold-400 text-gold-400 font-medium text-sm flex items-center gap-2 transition-all">
+                    🚗 Mon Garage Premium
+                </button>
+                <button onclick="switchTab('renouvellement')" id="tab-button-renouvellement" class="tab-btn pb-4 px-1 border-b-2 border-transparent text-gray-400 hover:text-gray-200 font-medium text-sm flex items-center gap-2 transition-all">
+                    📈 Renouvellement Anticipé
+                </button>
+                <button onclick="switchTab('ambassadeur')" id="tab-button-ambassadeur" class="tab-btn pb-4 px-1 border-b-2 border-transparent text-gray-400 hover:text-gray-200 font-medium text-sm flex items-center gap-2 transition-all">
+                    🤝 Programme Ambassadeur
+                </button>
+                <button onclick="switchTab('conciergerie')" id="tab-button-conciergerie" class="tab-btn pb-4 px-1 border-b-2 border-transparent text-gray-400 hover:text-gray-200 font-medium text-sm flex items-center gap-2 transition-all">
+                    ✨ Conciergerie & Événements
+                </button>
+                <button onclick="switchTab('avis')" id="tab-button-avis" class="tab-btn pb-4 px-1 border-b-2 border-transparent text-gray-400 hover:text-gray-200 font-medium text-sm flex items-center gap-2 transition-all">
+                    ⭐️ Votre Avis (Objectif 4.5)
+                </button>
+            </nav>
+        </div>
 
-        <div class="container">
-            <h1 style="font-weight: 300; margin-bottom: 30px;">Mon <span style="color:var(--gold); font-weight:700;">Garage</span></h1>
-            <div class="car-tabs">
-                <div class="tab active" id="tab0" onclick="switchCar(0)">VÉHICULE 1</div>
-                <div class="tab" id="tab1" onclick="switchCar(1)">VÉHICULE 2</div>
+        <!-- CONTENU DES ONGLETS -->
+        
+        <!-- 1. Mon Garage Premium -->
+        <div id="tab-garage" class="tab-content active space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Vehicle Card -->
+                <div class="bg-premium-card border border-premium-border rounded-xl p-6 lg:col-span-2">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="bg-gold-500/10 text-gold-400 border border-gold-500/30 text-xs px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold">Véhicule Actuel</span>
+                            <h3 class="text-2xl font-serif text-white mt-2">Porsche 911 Carrera S</h3>
+                            <p class="text-sm text-gray-400">Immatriculation : AA-123-BB &bull; Millésime : 2023</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-gray-400 block">Kilométrage certifié</span>
+                            <span class="text-xl font-bold text-white">24 500 km</span>
+                        </div>
+                    </div>
+                    <div class="border-t border-premium-border pt-4 mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-premium-dark/40 p-3 rounded-lg border border-premium-border/60">
+                            <span class="block text-xs text-gray-400 mb-1">Garantie constructeur</span>
+                            <span class="text-sm font-semibold text-green-400">Active (Jusqu'en 2028)</span>
+                        </div>
+                        <div class="bg-premium-dark/40 p-3 rounded-lg border border-premium-border/60">
+                            <span class="block text-xs text-gray-400 mb-1">Prochain Entretien</span>
+                            <span class="text-sm font-semibold text-amber-400">Dans 45 jours</span>
+                        </div>
+                        <div class="bg-premium-dark/40 p-3 rounded-lg border border-premium-border/60 col-span-2 md:col-span-1">
+                            <span class="block text-xs text-gray-400 mb-1">Contrat d'entretien APM</span>
+                            <span class="text-sm font-semibold text-white">Inclus (Premium Care)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Directe Maintenance -->
+                <div class="bg-premium-card border border-premium-border rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-lg font-serif text-white mb-2">Prendre rendez-vous</h4>
+                        <p class="text-sm text-gray-400 mb-4">Votre révision annuelle approche. Planifiez-la en 1 clic auprès de nos ateliers partenaires agréés sur Antibes ou Cannes.</p>
+                    </div>
+                    <button onclick="switchTab('conciergerie')" class="w-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-premium-dark font-semibold py-3 px-4 rounded-xl transition duration-200 text-center text-sm shadow-md">
+                        Réserver mon créneau VIP
+                    </button>
+                </div>
             </div>
-            <div class="main-grid">
-                <div class="left-col">
-                    <div class="card">
-                        <span class="card-title">Fiche d'identité du véhicule</span>
-                        <div class="car-display">
-                            <div class="car-img" id="main-car-img"></div>
-                            <div class="car-main-specs">
-                                <h2 id="car-name" style="margin:0 0 15px 0; font-size: 1.8rem;">---</h2>
-                                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.85rem;">
-                                    <p style="color:#888;">Puissance: <b style="color:white" id="car-hp">---</b></p>
-                                    <p style="color:#888;">Kilométrage: <b style="color:white" id="car-km">---</b></p>
-                                    <p style="color:#888;">Carrosserie: <b style="color:white" id="car-body">---</b></p>
-                                    <p style="color:#888;">Année: <b style="color:white" id="car-year">---</b></p>
-                                </div>
-                                <button class="btn" style="background:transparent; border:1px solid var(--gold); color:var(--gold); margin-top:20px;" onclick="toggleMore()">Plus d'informations</button>
+
+            <!-- Historique des interventions -->
+            <div class="bg-premium-card border border-premium-border rounded-xl p-6">
+                <h4 class="text-lg font-serif text-white mb-4">Historique des Services & Documents</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="text-xs uppercase bg-premium-dark/60 text-gray-400 border-b border-premium-border">
+                            <tr>
+                                <th class="px-4 py-3">Date</th>
+                                <th class="px-4 py-3">Type d'intervention</th>
+                                <th class="px-4 py-3">Kilométrage</th>
+                                <th class="px-4 py-3">Lieu</th>
+                                <th class="px-4 py-3 text-right">Facture/Rapport</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-premium-border text-gray-300">
+                            <tr>
+                                <td class="px-4 py-4">12/05/2025</td>
+                                <td class="px-4 py-4 font-medium text-white">Check-up de contrôle & Vidange</td>
+                                <td class="px-4 py-4">15 200 km</td>
+                                <td class="px-4 py-4">Atelier Partenaire Antibes</td>
+                                <td class="px-4 py-4 text-right"><a href="#" class="text-gold-400 hover:underline">📄 Télécharger PDF</a></td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-4">18/10/2024</td>
+                                <td class="px-4 py-4 font-medium text-white">Livraison & Traitement Céramique</td>
+                                <td class="px-4 py-4">10 km</td>
+                                <td class="px-4 py-4">Azur Premium Motor Antibes</td>
+                                <td class="px-4 py-4 text-right"><a href="#" class="text-gold-400 hover:underline">📄 Acte de Vente</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Renouvellement Anticipé -->
+        <div id="tab-renouvellement" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Valuation Card -->
+                <div class="bg-premium-card border border-premium-border rounded-xl p-6 md:col-span-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-gray-400 block mb-1">Estimation Valeur de Reprise</span>
+                        <h3 class="text-3xl font-bold text-gold-400 font-serif my-2">112 000 €</h3>
+                        <p class="text-xs text-green-400 flex items-center gap-1">
+                            <span>●</span> Marché de l'occasion très porteur sur ce modèle
+                        </p>
+                        <p class="text-xs text-gray-400 mt-4">Calculé automatiquement selon les tendances du marché de la Côte d'Azur et l'historique de votre véhicule.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-premium-border text-xs text-gray-500">
+                        Dernière mise à jour : Aujourd'hui
+                    </div>
+                </div>
+
+                <!-- Explainer Card -->
+                <div class="bg-gradient-to-br from-premium-card to-premium-dark border border-premium-border rounded-xl p-6 md:col-span-2">
+                    <h3 class="text-xl font-serif text-white mb-2">Pourquoi renouveler maintenant ?</h3>
+                    <p class="text-sm text-gray-400 mb-4">Vous entrez dans la 3ème année de détention. C'est le moment idéal pour maximiser la valeur de reprise de votre Porsche 911 avant la décote majeure du cycle des 4 ans, tout en montant en gamme sans effort de trésorerie excessif.</p>
+                    <div class="p-4 bg-gold-500/5 border border-gold-500/20 rounded-xl">
+                        <p class="text-xs text-gold-400 font-semibold uppercase tracking-wider mb-1">Offre Spéciale Privilège</p>
+                        <p class="text-sm text-gray-200">Pour tout renouvellement anticipé initié ce mois-ci, Azur Premium Motor vous offre les frais de carte grise et l'extension de garantie 3 ans sur votre prochain véhicule.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upgrade Suggestions -->
+            <h4 class="text-lg font-serif text-white mt-8 mb-4">Suggestions de montée en gamme disponibles immédiatement</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Vehicle Suggestion 1 -->
+                <div class="bg-premium-card border border-premium-border rounded-xl overflow-hidden flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs text-gold-400 font-mono">GAMME PRESTIGE</span>
+                                <h5 class="text-xl font-serif text-white mt-1">Aston Martin Vantage V8</h5>
+                                <p class="text-xs text-gray-400 mt-1">Année 2024 &bull; 8 500 km &bull; Boîte Auto</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs text-gray-400 block">Prix du véhicule</span>
+                                <span class="text-lg font-bold text-white">164 900 €</span>
                             </div>
                         </div>
-                        <div class="more-details" id="more-details">
-                            <div class="specs-grid" id="full-specs-content"></div>
+                        <div class="mt-6 space-y-2 bg-premium-dark/60 p-4 rounded-xl border border-premium-border/50 text-sm">
+                            <div class="flex justify-between text-gray-400">
+                                <span>Valeur de reprise de votre Porsche :</span>
+                                <span class="text-white font-medium">- 112 000 €</span>
+                            </div>
+                            <div class="flex justify-between text-gray-400 border-t border-premium-border/50 pt-2">
+                                <span>Différence à financer :</span>
+                                <span class="text-gold-400 font-bold">52 900 €</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-400 font-medium pt-1">
+                                <span>Estimation financement mensuel :</span>
+                                <span class="text-white">Dès 649 € / mois</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <span class="card-title">Sélection exclusive (Survoler pour voir les photos)</span>
-                        <div class="suggest-grid" id="suggest-container"></div>
+                    <div class="px-6 pb-6">
+                        <button class="w-full bg-premium-dark border border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-premium-dark font-medium py-2.5 rounded-lg transition duration-200 text-sm text-center">
+                            Demander une simulation personnalisée
+                        </button>
                     </div>
                 </div>
-                <div class="right-col">
-                    <div class="card">
-                        <span class="card-title">Entretien & Maintenance</span>
-                        <p style="font-size: 0.9rem; margin-bottom: 5px;">Prochaine révision :</p>
-                        <h4 id="service-date" style="margin:0; font-size: 1.1rem; color: white;">---</h4>
-                        <button class="btn" style="margin-top:20px; font-size: 0.7rem;">Réserver l'atelier</button>
+
+                <!-- Vehicle Suggestion 2 -->
+                <div class="bg-premium-card border border-premium-border rounded-xl overflow-hidden flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs text-gold-400 font-mono">GAMME LUXE ELECTRIQUE</span>
+                                <h5 class="text-xl font-serif text-white mt-1">Porsche Taycan Turbo S</h5>
+                                <p class="text-xs text-gray-400 mt-1">Année 2024 &bull; 12 000 km &bull; Électrique</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs text-gray-400 block">Prix du véhicule</span>
+                                <span class="text-lg font-bold text-white">149 000 €</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 space-y-2 bg-premium-dark/60 p-4 rounded-xl border border-premium-border/50 text-sm">
+                            <div class="flex justify-between text-gray-400">
+                                <span>Valeur de reprise de votre Porsche :</span>
+                                <span class="text-white font-medium">- 112 000 €</span>
+                            </div>
+                            <div class="flex justify-between text-gray-400 border-t border-premium-border/50 pt-2">
+                                <span>Différence à financer :</span>
+                                <span class="text-gold-400 font-bold">37 000 €</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-400 font-medium pt-1">
+                                <span>Estimation financement mensuel :</span>
+                                <span class="text-white">Dès 410 € / mois</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card">
-                        <span class="card-title">Estimer mon véhicule</span>
-                        <input type="number" id="est-km" placeholder="Kilométrage actuel">
-                        <select id="est-state">
-                            <option value="1">État Excellent</option>
-                            <option value="0.95">Bon état</option>
-                            <option value="0.85">État Moyen</option>
-                            <option value="0.6">Mauvais état</option>
-                        </select>
-                        <button class="btn" onclick="calculateEstimation()">Calculer l'estimation</button>
-                        <div id="est-result" style="margin-top: 15px; font-weight: 700; color: var(--gold); text-align: center; font-size: 1.3rem;"></div>
+                    <div class="px-6 pb-6">
+                        <button class="w-full bg-premium-dark border border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-premium-dark font-medium py-2.5 rounded-lg transition duration-200 text-sm text-center">
+                            Demander une simulation personnalisée
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        // --- 1. GESTION TIRETS AUTO PLAQUE ---
-        document.getElementById('plate').addEventListener('input', function(e) {
-            let val = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-            let finalVal = "";
-            if (val.length > 0) finalVal += val.substring(0, 2);
-            if (val.length > 2) finalVal += "-" + val.substring(2, 5);
-            if (val.length > 5) finalVal += "-" + val.substring(5, 7);
-            e.target.value = finalVal;
-        });
-
-        // --- 2. DONNEES VEHICULES ET IMAGES HD ---
-        const garage = [
-            {
-                name: "Porsche 911 Carrera S", hp: "450 cv", km: "12 450", year: "2024", body: "Coupé Sport", 
-                img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
-                service: "15 Septembre 2026", baseVal: 135000,
-                specs: {
-                    perf: [["Moteur", "Flat-6 3.0L Bi-Turbo"], ["0-100 km/h", "3.7s"], ["Vitesse Max", "308 km/h"]],
-                    design: [["Couleur Ext.", "Gris Quartz"], ["Intérieur", "Cuir Noir / Alcantara"], ["Jantes", "20/21\" RS Spyder"]]
-                },
-                suggestions: [
-                    { 
-                        name: "Porsche Taycan GTS", hp: "598 cv", km: "5 200", year: "2025", 
-                        images: [
-                            "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=500&q=80", // Avant
-                            "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=500&q=80", // Arrière
-                            "https://images.unsplash.com/photo-1554744512-d6c603f27c54?auto=format&fit=crop&w=500&q=80"  // Intérieur
-                        ]
-                    },
-                    { 
-                        name: "Audi RS6 Avant", hp: "600 cv", km: "18 900", year: "2024", 
-                        images: [
-                            "https://images.unsplash.com/photo-1606148047423-9993309a4d04?auto=format&fit=crop&w=500&q=80",
-                            "https://images.unsplash.com/photo-1605515298946-d062f2e9da53?auto=format&fit=crop&w=500&q=80",
-                            "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=500&q=80"
-                        ]
-                    }
-                ]
-            },
-            {
-                name: "Audi Q8 S-Line Luxe", hp: "286 cv", km: "31 200", year: "2024", body: "SUV Premium", 
-                img: "https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&w=800&q=80",
-                service: "12 Janvier 2027", baseVal: 82000,
-                specs: {
-                    perf: [["Moteur", "V6 3.0L TDI"], ["Couple", "600 Nm"], ["Transmission", "Quattro Tiptronic"]],
-                    design: [["Couleur Ext.", "Noir Mythic"], ["Finition", "S-Line Black Edition"], ["Jantes", "22\" Audi Sport"]]
-                },
-                suggestions: [
-                    { 
-                        name: "Range Rover Sport", hp: "300 cv", km: "50", year: "2026", 
-                        images: [
-                            "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=500&q=80",
-                            "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=500&q=80",
-                            "https://images.unsplash.com/photo-1520050206274-a1af4463d8c4?auto=format&fit=crop&w=500&q=80"
-                        ]
-                    },
-                    { 
-                        name: "Porsche Cayenne Coupé", hp: "340 cv", km: "15 000", year: "2025", 
-                        images: [
-                            "https://images.unsplash.com/photo-1611859328053-3cbc9f9399f4?auto=format&fit=crop&w=500&q=80",
-                            "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=500&q=80",
-                            "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=500&q=80"
-                        ]
-                    }
-                ]
-            }
-        ];
-
-        let imageInterval;
-
-        function login() {
-            const name = document.getElementById('lastname').value;
-            const plate = document.getElementById('plate').value;
-            if(name && plate.length === 9) {
-                document.getElementById('login-screen').style.display = 'none';
-                document.getElementById('client-dashboard').style.display = 'block';
-                document.getElementById('nav-user').innerText = "BONJOUR, M. " + name.toUpperCase();
-                switchCar(0);
-            } else {
-                alert("Veuillez remplir votre nom et une plaque valide (ex: AB-123-CD)");
-            }
-        }
-
-        function switchCar(idx) {
-            const car = garage[idx];
-            document.querySelectorAll('.tab').forEach((t, i) => t.className = (i === idx) ? 'tab active' : 'tab');
-            document.getElementById('car-name').innerText = car.name;
-            document.getElementById('car-hp').innerText = car.hp;
-            document.getElementById('car-km').innerText = car.km + " km";
-            document.getElementById('car-year').innerText = car.year;
-            document.getElementById('car-body').innerText = car.body;
-            document.getElementById('main-car-img').style.backgroundImage = `url(${car.img})`;
-            document.getElementById('service-date').innerText = car.service;
-
-            // Reset Estimation
-            document.getElementById('est-km').value = "";
-            document.getElementById('est-result').innerText = "";
-
-            // Full Specs
-            document.getElementById('full-specs-content').innerHTML = `
-                <div class="spec-cat"><h4>Performance</h4>${car.specs.perf.map(s => `<div class="spec-item">${s[0]}<span class="spec-val">${s[1]}</span></div>`).join('')}</div>
-                <div class="spec-cat"><h4>Design</h4>${car.specs.design.map(s => `<div class="spec-item">${s[0]}<span class="spec-val">${s[1]}</span></div>`).join('')}</div>
-            `;
-
-            // Suggestions
-            const suggestBox = document.getElementById('suggest-container');
-            suggestBox.innerHTML = car.suggestions.map((s, sIdx) => `
-                <div class="suggest-card" onmouseenter="startGallery(this, ${idx}, ${sIdx})" onmouseleave="stopGallery(this, ${idx}, ${sIdx})">
-                    <div class="suggest-img" style="background-image:url(${s.images[0]})"></div>
-                    <h4 style="margin:0; font-size:0.9rem;">${s.name}</h4>
-                    <p style="font-size:0.7rem; color:#888; margin:5px 0;">${s.hp} | ${s.km} km</p>
-                    <button class="btn-suggest">Réserver un essai</button>
+        <!-- 3. Programme Ambassadeur -->
+        <div id="tab-ambassadeur" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Referral Code -->
+                <div class="bg-premium-card border border-premium-border rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-serif text-white mb-2">Votre Code Ambassadeur</h3>
+                        <p class="text-xs text-gray-400 mb-4">Partagez ce code unique avec vos proches, collègues et réseau d'affaires sur la Côte d'Azur cherchant un véhicule premium.</p>
+                        
+                        <div class="bg-premium-dark border border-dashed border-gold-500/50 p-4 rounded-xl text-center select-all cursor-pointer group hover:bg-premium-dark/80 transition">
+                            <span class="block text-xs text-gray-500 uppercase tracking-widest mb-1">Cliquer pour copier</span>
+                            <span class="text-xl font-mono font-bold text-gold-400 tracking-wider">APM-ROLAND-911</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-xs text-gray-400 bg-premium-dark/40 p-3 rounded-lg border border-premium-border/40">
+                        🎁 **Avantage Filleul :** Une garantie de 12 mois supplémentaire offerte sur son véhicule d'occasion.
+                    </div>
                 </div>
-            `).join('');
+
+                <!-- Referral Tracking -->
+                <div class="bg-premium-card border border-premium-border rounded-xl p-6 lg:col-span-2">
+                    <h3 class="text-lg font-serif text-white mb-4">Suivi de vos parrainages</h3>
+                    <div class="grid grid-cols-3 gap-4 mb-6 text-center">
+                        <div class="bg-premium-dark/50 p-4 rounded-xl border border-premium-border">
+                            <span class="block text-2xl font-bold text-white">2</span>
+                            <span class="text-xs text-gray-400">Filleuls Inscrits</span>
+                        </div>
+                        <div class="bg-premium-dark/50 p-4 rounded-xl border border-premium-border">
+                            <span class="block text-2xl font-bold text-gold-400">1</span>
+                            <span class="text-xs text-gray-400">Vente Finalisée</span>
+                        </div>
+                        <div class="bg-premium-dark/50 p-4 rounded-xl border border-premium-border">
+                            <span class="block text-2xl font-bold text-green-400">1 000</span>
+                            <span class="text-xs text-gray-400">Points Bonus Gagnés</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Rewards Timeline -->
+                    <h4 class="text-xs uppercase tracking-wider text-gray-400 mb-3 font-semibold">Vos Paliers de Récompenses Ambassadeur</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-green-500/5 border border-green-500/20 rounded-xl text-sm">
+                            <div class="flex items-center gap-3">
+                                <span class="text-green-400 font-bold">✓</span>
+                                <div>
+                                    <p class="text-white font-medium">Palier 1 : 1 Vente</p>
+                                    <p class="text-xs text-gray-400">Traitement esthétique hydrophobe & Nettoyage intégral VIP</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-semibold text-green-400 bg-green-400/10 px-2.5 py-0.5 rounded-full">Débloqué</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-premium-dark/40 border border-premium-border rounded-xl text-sm opacity-75">
+                            <div class="flex items-center gap-3">
+                                <span class="text-gold-400 font-bold">○</span>
+                                <div>
+                                    <p class="text-white font-medium">Palier 2 : 2 Ventes</p>
+                                    <p class="text-xs text-gray-400">Week-end d'exception au volant d'un modèle Luxe (Maserati/Porsche)</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-semibold text-gray-400 bg-gray-700/50 px-2.5 py-0.5 rounded-full">En cours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Conciergerie & Club Événements -->
+        <div id="tab-conciergerie" class="tab-content space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Services Conciergerie -->
+                <div class="bg-premium-card border border-premium-border rounded-xl p-6 lg:col-span-1 space-y-4">
+                    <h3 class="text-lg font-serif text-white mb-2">Conciergerie Dédiée</h3>
+                    <p class="text-xs text-gray-400 mb-4">Gagnez du temps. Demandez des interventions de prestige prises en charge de A à Z par l'équipe Azur Premium Motor.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="p-4 bg-premium-dark/60 border border-premium-border rounded-xl hover:border-gold-500/40 transition cursor-pointer">
+                            <p class="text-sm font-semibold text-white">📦 Service Convoyage Valet</p>
+                            <p class="text-xs text-gray-400 mt-1">Prise en charge de votre véhicule à domicile ou bureau (Antibes/Cannes/Nice) pour son entretien.</p>
+                        </div>
+                        <div class="p-4 bg-premium-dark/60 border border-premium-border rounded-xl hover:border-gold-500/40 transition cursor-pointer">
+                            <p class="text-sm font-semibold text-white">🧽 Détachage & Esthétique Auto</p>
+                            <p class="text-xs text-gray-400 mt-1">Rénovation cuir, polissage et lustrage complet pour lui redonner son éclat d'origine.</p>
+                        </div>
+                        <div class="p-4 bg-premium-dark/60 border border-premium-border rounded-xl hover:border-gold-500/40 transition cursor-pointer">
+                            <p class="text-sm font-semibold text-white">🔎 Recherche Personnalisée VIP</p>
+                            <p class="text-xs text-gray-400 mt-1">Mandatez-nous pour dénicher une configuration introuvable sur le marché.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Club Events -->
+                <div class="bg-premium-card border border-premium-border rounded-xl p-6 lg:col-span-2">
+                    <h3 class="text-lg font-serif text-white mb-4">Événements Privés du Club APM</h3>
+                    <div class="space-y-4">
+                        <!-- Event 1 -->
+                        <div class="border border-premium-border rounded-xl overflow-hidden bg-premium-dark/30 flex flex-col sm:flex-row">
+                            <div class="p-5 flex-grow">
+                                <span class="bg-gold-500/10 text-gold-400 border border-gold-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Essais Privés exclusifs</span>
+                                <h4 class="text-lg font-serif text-white mt-2">Matinée Électrique & Prestige à Cannes</h4>
+                                <p class="text-xs text-gray-400 mt-1">Découvrez et essayez sur les routes de l'Esterel les dernières nouveautés hybrides et électriques premium (Audi e-tron, BMW iX).</p>
+                                <div class="mt-4 flex gap-4 text-xs text-gray-400 font-medium">
+                                    <span>📅 22 Juin 2026</span>
+                                    <span>📍 Boulevard de la Croisette, Cannes</span>
+                                </div>
+                            </div>
+                            <div class="p-5 sm:border-l border-premium-border flex items-center justify-center bg-premium-card/60 min-w-[140px]">
+                                <button class="w-full text-center bg-gold-400 hover:bg-gold-500 text-premium-dark font-semibold py-2 px-4 text-xs rounded-lg transition">
+                                    S'inscrire (VIP)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Event 2 -->
+                        <div class="border border-premium-border rounded-xl overflow-hidden bg-premium-dark/30 flex flex-col sm:flex-row">
+                            <div class="p-5 flex-grow">
+                                <span class="bg-purple-500/10 text-purple-400 border border-purple-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Lifestyle & Networking</span>
+                                <h4 class="text-lg font-serif text-white mt-2">Cocktail d'été Azur Premium - Concession Antibes</h4>
+                                <p class="text-xs text-gray-400 mt-1">Soirée privée de réseautage dédiée aux entrepreneurs et clients fidèles d'APM autour d'une dégustation de grands crus et jazz live.</p>
+                                <div class="mt-4 flex gap-4 text-xs text-gray-400 font-medium">
+                                    <span>📅 11 Juillet 2026</span>
+                                    <span>📍 Concession Route de Biot, Antibes</span>
+                                </div>
+                            </div>
+                            <div class="p-5 sm:border-l border-premium-border flex items-center justify-center bg-premium-card/60 min-w-[140px]">
+                                <span class="text-xs text-green-400 font-semibold bg-green-400/10 px-3 py-1 rounded-full border border-green-500/20">✓ Inscrit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Votre Avis -->
+        <div id="tab-avis" class="tab-content space-y-6">
+            <div class="max-w-2xl mx-auto bg-premium-card border border-premium-border rounded-xl p-8 text-center space-y-6 shadow-xl">
+                <div class="w-16 h-16 bg-gold-500/10 text-gold-400 rounded-full flex items-center justify-center text-2xl mx-auto border border-gold-500/20">
+                    ⭐️
+                </div>
+                <div>
+                    <h3 class="text-2xl font-serif text-white mb-2">Votre satisfaction pilote notre concession</h3>
+                    <p class="text-sm text-gray-400">Azur Premium Motor affiche actuellement une note de <strong class="text-white">4,2/5</strong> grâce à 88 clients de confiance. Aidez-nous à atteindre notre objectif d'excellence de <strong class="text-gold-400">4,5/5</strong> en partageant votre expérience d'accompagnement sur-mesure.</p>
+                </div>
+
+                <!-- Simulation d'enquête interactive -->
+                <div class="bg-premium-dark/50 p-6 rounded-xl border border-premium-border space-y-4">
+                    <p class="text-sm font-medium text-gray-300">Quelle note attribuez-vous à votre conseiller commercial Eric ou Gregory ?</p>
+                    <div class="flex justify-center gap-2 text-3xl">
+                        <button onclick="setRating(1)" class="star-btn text-gray-600 hover:text-gold-400 transition">★</button>
+                        <button onclick="setRating(2)" class="star-btn text-gray-600 hover:text-gold-400 transition">★</button>
+                        <button onclick="setRating(3)" class="star-btn text-gray-600 hover:text-gold-400 transition">★</button>
+                        <button onclick="setRating(4)" class="star-btn text-gray-600 hover:text-gold-400 transition">★</button>
+                        <button onclick="setRating(5)" class="star-btn text-gray-600 hover:text-gold-400 transition">★</button>
+                    </div>
+                    
+                    <!-- Dynamic Response Box based on 5 star rating -->
+                    <div id="google-prompt" class="hidden mt-4 pt-4 border-t border-premium-border/60 text-center animate-fade-in">
+                        <p class="text-xs text-green-400 font-medium mb-3">✨ Un immense merci pour votre confiance absolue !</p>
+                        <p class="text-xs text-gray-400 mb-4">Pour nous aider concrètement à faire rayonner la concession sur la Côte d'Azur, acceptez-vous de copier-coller votre avis sur notre fiche officielle Google Maps ?</p>
+                        <a href="https://maps.google.com" target="_blank" class="inline-block bg-white text-premium-dark hover:bg-gray-150 font-bold px-5 py-2.5 rounded-lg text-xs tracking-wide shadow transition">
+                            Partager mon avis sur Google Maps (+500 pts bonus Club)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-premium-card border-t border-premium-border px-6 py-6 mt-12 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto space-y-2">
+            <p>&copy; 2026 Azur Premium Motor — 810 Route de Biot, 06600 Antibes.</p>
+            <p class="text-gray-600">Prototype fonctionnel développé dans le cadre du plan d'action d'optimisation de la relation client & fidélisation.</p>
+        </div>
+    </footer>
+
+    <!-- Tab Scripting -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all tab content
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById('tab-' + tabId).classList.add('active');
+            
+            // Reset button designs
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-gold-400', 'text-gold-400');
+                btn.classList.add('border-transparent', 'text-gray-400');
+            });
+            
+            // Activate selected button
+            document.getElementById('tab-button-' + tabId).classList.remove('border-transparent', 'text-gray-400');
+            document.getElementById('tab-button-' + tabId).classList.add('border-gold-400', 'text-gold-400');
         }
 
-        function startGallery(element, carIdx, suggestIdx) {
-            const images = garage[carIdx].suggestions[suggestIdx].images;
-            const imgDiv = element.querySelector('.suggest-img');
-            let currentImg = 0;
-            imageInterval = setInterval(() => {
-                currentImg = (currentImg + 1) % images.length;
-                imgDiv.style.backgroundImage = `url(${images[currentImg]})`;
-            }, 1200);
-        }
+        function setRating(rating) {
+            const stars = document.querySelectorAll('.star-btn');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('text-gray-600');
+                    star.classList.add('text-gold-400');
+                } else {
+                    star.classList.remove('text-gold-400');
+                    star.classList.add('text-gray-600');
+                }
+            });
 
-        function stopGallery(element, carIdx, suggestIdx) {
-            clearInterval(imageInterval);
-            element.querySelector('.suggest-img').style.backgroundImage = `url(${garage[carIdx].suggestions[suggestIdx].images[0]})`;
-        }
-
-        function toggleMore() { document.getElementById('more-details').classList.toggle('active'); }
-
-        function calculateEstimation() {
-            const km = document.getElementById('est-km').value;
-            const coeff = document.getElementById('est-state').value;
-            if(!km) return;
-            const car = garage[document.querySelector('.tab.active').id === "tab0" ? 0 : 1];
-            let res = (car.baseVal - (km * 0.40)) * coeff;
-            document.getElementById('est-result').innerText = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(res < 0 ? 0 : res);
+            // If user gives 4 or 5 stars, trigger the prompt to share on Google Maps to achieve the 4.5/5 audit target.
+            if (rating >= 4) {
+                document.getElementById('google-prompt').classList.remove('hidden');
+            } else {
+                document.getElementById('google-prompt').classList.add('hidden');
+            }
         }
     </script>
 </body>
