@@ -54,13 +54,13 @@
 
     <!-- BARRE HAUTE EXCLUSIVITÉ -->
     <div class="bg-gradient-to-r from-apm-gold via-apm-goldhover to-apm-gold text-apm-bg text-center py-2 px-4 text-xs font-bold tracking-widest uppercase">
-        ✨ Portail Privé Élite — Azur Premium Motor Concession Antibes
+        ⚡ Portail Client — Azur Premium Motor Concession Antibes
     </div>
 
     <!-- PRINCIPAL DASHBOARD CONTAINER -->
     <div class="min-h-screen flex flex-col lg:flex-row">
         
-        <!-- SIDEBAR DE NAVIGATION (Les 5 Piliers demandés) -->
+        <!-- SIDEBAR DE NAVIGATION (Les 5 Piliers) -->
         <aside class="w-full lg:w-80 bg-apm-dark border-r border-apm-border flex flex-col justify-between p-6">
             <div class="space-y-8">
                 <!-- Brand Identity -->
@@ -70,7 +70,7 @@
                     </div>
                     <div>
                         <h1 class="text-sm font-serif tracking-[0.2em] font-bold text-white">AZUR PREMIUM</h1>
-                        <p class="text-[10px] text-apm-gold uppercase tracking-widest font-semibold">Motor Club Privé</p>
+                        <p class="text-[10px] text-apm-gold uppercase tracking-widest font-semibold">Espace Privé Conducteur</p>
                     </div>
                 </div>
 
@@ -80,9 +80,9 @@
                         JR
                     </div>
                     <div>
-                        <p class="text-xs text-apm-muted font-medium">Membre Privilège</p>
+                        <p class="text-xs text-apm-muted font-medium">Client Privilège</p>
                         <p class="text-sm font-semibold text-white">M. Jean Roland</p>
-                        <span class="inline-block text-[9px] border border-apm-gold/40 text-apm-gold px-2 py-0.5 rounded-full font-bold uppercase mt-1">Cercle Platine</span>
+                        <span class="inline-block text-[9px] border border-apm-gold/40 text-apm-gold px-2 py-0.5 rounded-full font-bold uppercase mt-1">Communauté APM</span>
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@
                         <span>🤝</span> 3. Ambassadeur Digitalisé
                     </button>
                     <button onclick="switchTab('conciergerie')" id="btn-conciergerie" class="tab-btn w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-300 text-apm-muted hover:text-white hover:bg-apm-card border border-transparent hover:border-apm-border">
-                        <span>🥂</span> 4. Conciergerie &amp; Événements
+                        <span>☕</span> 4. Conciergerie &amp; Événements
                     </button>
                     <button onclick="switchTab('avis')" id="btn-avis" class="tab-btn w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-300 text-apm-muted hover:text-white hover:bg-apm-card border border-transparent hover:border-apm-border">
                         <span>⭐</span> 5. Hub Collecte d'Avis
@@ -106,198 +106,217 @@
                 </nav>
             </div>
 
-            <!-- Interlocuteur Dédié -->
-            <div class="pt-6 border-t border-apm-border text-xs">
-                <p class="text-apm-muted mb-1">Votre Interlocuteur :</p>
+            <!-- Interlocuteur Dédié + AJOUT : BOUTON WHATSAPP OMNICANAL -->
+            <div class="pt-6 border-t border-apm-border text-xs space-y-2">
+                <p class="text-apm-muted mb-1">Votre Conseiller Dédié :</p>
                 <p class="text-white font-medium">Gregory Roland</p>
                 <p class="text-apm-gold font-mono text-[11px]">gregory@azurpremiummotor.fr</p>
+                
+                <!-- Bouton High-Touch WhatsApp (Ajout stratégique) -->
+                <a href="#" onclick="alert('Ouverture d\'une fenêtre de chat cryptée WhatsApp directe avec Gregory Roland.')" class="mt-2 flex items-center justify-center gap-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-600/30 py-2 rounded-lg text-[11px] font-semibold tracking-wider uppercase transition-all duration-300">
+                    <span>💬</span> Lien WhatsApp Direct
+                </a>
             </div>
         </aside>
 
         <!-- AREA DE CONTENU DES ONGLETS -->
         <main class="flex-grow p-6 md:p-10 lg:p-12 max-w-7xl mx-auto w-full space-y-8">
 
-            <!-- PILIER 1: MON GARAGE PREMIUM (Avec photo, caractéristiques et documents) -->
+            <!-- PILIER 1: MON GARAGE PREMIUM (Avec photo, caractéristiques et AJOUT: Santé du véhicule) -->
             <div id="tab-garage" class="tab-content active space-y-6">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     
                     <!-- Fiche Véhicule Principale + Photo Réaliste -->
                     <div class="lg:col-span-2 bg-apm-card border border-apm-border rounded-2xl overflow-hidden flex flex-col justify-between">
-                        <!-- Intégration de la photo du véhicule demandée -->
                         <div class="h-64 w-full relative bg-apm-dark">
                             <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1200&q=80" alt="Porsche 911 Carrera S APM" class="w-full h-full object-cover opacity-90">
                             <div class="absolute inset-0 bg-gradient-to-t from-apm-card via-transparent to-transparent"></div>
-                            <span class="absolute top-4 left-4 bg-apm-gold text-apm-bg text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow-lg">Votre Configuration</span>
+                            <span class="absolute top-4 left-4 bg-apm-gold text-apm-bg text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow-lg">Votre Véhicule Actuel</span>
                         </div>
                         
                         <div class="p-6 space-y-6">
                             <div class="flex justify-between items-start">
                                 <div>
                                     <h3 class="text-2xl font-serif text-white">Porsche 911 Carrera S</h3>
-                                    <p class="text-xs text-apm-muted mt-1">Immatriculation : AA-123-BB • Année modèle : 2023</p>
+                                    <p class="text-xs text-apm-muted mt-1">Immatriculation : AA-123-BB • Financement en cours</p>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-xs text-apm-muted block">Kilométrage certifié</span>
+                                    <span class="text-xs text-apm-muted block">Kilométrage</span>
                                     <span class="text-xl font-bold font-mono text-white">24 500 km</span>
                                 </div>
                             </div>
                             
-                            <!-- INTERACTION: VOIR LES OPTIONS / CARACTÉRISTIQUES -->
                             <div>
                                 <button onclick="toggleSpecs()" class="w-full sm:w-auto bg-apm-bg border border-apm-gold/50 text-apm-gold hover:bg-apm-gold hover:text-apm-bg px-5 py-2.5 text-xs uppercase tracking-widest font-semibold transition-all">
-                                    Voir les options & caractéristiques de mon véhicule
+                                    Voir la fiche technique complète
                                 </button>
                                 
                                 <div id="specs-block" class="hidden mt-4 p-4 bg-apm-bg/60 border border-apm-border rounded-xl text-xs space-y-2">
                                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 font-light">
-                                        <div><span class="text-apm-muted block">Motorisation :</span> Flat-6 Bi-Turbo 3.0L</div>
-                                        <div><span class="text-apm-muted block">Puissance :</span> 450 ch (331 kW)</div>
-                                        <div><span class="text-apm-muted block">Boîte :</span> PDK 8 rapports</div>
-                                        <div class="text-apm-gold font-medium"><span class="text-apm-muted block font-light">Option :</span> Toit ouvrant coulissant en verre</div>
-                                        <div class="text-apm-gold font-medium"><span class="text-apm-muted block font-light">Option :</span> Phares matriciels à LED avec PDLS Plus</div>
-                                        <div class="text-apm-gold font-medium"><span class="text-apm-muted block font-light">Option :</span> Système audio BOSE® Surround Sound</div>
+                                        <div><span class="text-apm-muted block">Moteur :</span> Flat-6 3.0L Bi-Turbo</div>
+                                        <div><span class="text-apm-muted block">Puissance :</span> 450 ch</div>
+                                        <div><span class="text-apm-muted block">Transmission :</span> Propulsion / PDK 8</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bloc d'accès rapide aux documents inclus dans le Garage -->
+                    <!-- AJOUT STRATÉGIQUE : MODULE CONNECTÉ & DIAGNOSTIC PRÉDICTIF -->
                     <div class="bg-apm-card border border-apm-border rounded-2xl p-6 flex flex-col justify-between">
                         <div>
-                            <h4 class="text-lg font-serif text-white mb-2">Coffre-fort Numérique Client</h4>
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="text-sm font-bold uppercase tracking-wider text-white">🔧 Carnet de Santé Virtuel</h4>
+                                <span class="w-2.5 h-2.5 rounded-full bg-apm-green animate-pulse"></span>
+                            </div>
                             <p class="text-xs text-apm-muted leading-relaxed mb-4">
-                                Téléchargez instantanément l'historique administratif limpide lié à votre contrat chez Azur Premium Motor.
+                                Analyse prédictive de votre véhicule pour optimiser les frais d'atelier à la concession d'Antibes.
                             </p>
                             
-                            <!-- INTERACTION: VOIR MES DOCUMENTS -->
-                            <div class="space-y-2">
-                                <div class="p-3 bg-apm-dark border border-apm-border rounded-xl flex justify-between items-center text-xs">
-                                    <div>
-                                        <p class="text-white font-medium">Acte de Vente original</p>
-                                        <span class="text-[10px] text-apm-muted">PDF • Octobre 2024</span>
+                            <div class="space-y-3 text-xs">
+                                <div>
+                                    <div class="flex justify-between text-[11px] mb-1">
+                                        <span class="text-apm-muted">Plaquettes de frein avant</span>
+                                        <span class="text-white font-medium">65% restantes</span>
                                     </div>
-                                    <button onclick="alert('Téléchargement de l\'acte de vente lancé.')" class="text-apm-gold hover:underline font-medium">Voir</button>
+                                    <div class="w-full bg-apm-dark h-1.5 rounded-full overflow-hidden">
+                                        <div class="bg-apm-green h-full w-[65%]"></div>
+                                    </div>
                                 </div>
-                                <div class="p-3 bg-apm-dark border border-apm-border rounded-xl flex justify-between items-center text-xs">
-                                    <div>
-                                        <p class="text-white font-medium">Rapport d'Atelier (15k km)</p>
-                                        <span class="text-[10px] text-apm-muted">PDF • Mai 2025</span>
+                                <div>
+                                    <div class="flex justify-between text-[11px] mb-1">
+                                        <span class="text-apm-muted">Pression des pneumatiques</span>
+                                        <span class="text-apm-green font-medium">Correcte (2.4 bar)</span>
                                     </div>
-                                    <button onclick="alert('Téléchargement du carnet d\'entretien lancé.')" class="text-apm-gold hover:underline font-medium">Voir</button>
+                                </div>
+                                <div class="p-3 bg-apm-dark border border-apm-border rounded-xl text-[11px] text-apm-muted mt-2">
+                                    ⏳ Prochaine vidange/révision requise dans : <span class="text-white font-bold">3 200 km</span> ou <span class="text-white font-bold">45 jours</span>.
                                 </div>
                             </div>
                         </div>
-                        <div class="pt-4 border-t border-apm-border text-[11px] text-apm-green flex items-center gap-2">
-                            <span>✓</span> Carnet numérique d'entretien à jour
+                        <div class="pt-4 border-t border-apm-border text-[11px] text-apm-muted">
+                            📁 Documents administratifs &amp; factures d'entretien archivés à jour.
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PILIER 2: MODULE DE RENOUVELLEMENT ANTICIPÉ (Avec outil d'estimation & réservation d'essai) -->
+            <!-- PILIER 2: MODULE DE RENOUVELLEMENT ANTICIPÉ (Avec AJOUT: Calculateur de Soulte/Effort Financier) -->
             <div id="tab-renouvellement" class="tab-content space-y-6">
                 <div class="bg-apm-card border border-apm-border rounded-2xl p-6 lg:p-8">
                     <div class="max-w-2xl">
-                        <span class="text-apm-gold text-xs uppercase tracking-widest font-bold">Arbitrage & Économie Circulaire Interne</span>
-                        <h3 class="text-3xl font-serif text-white mt-2 mb-4">Estimer votre véhicule & anticiper la décote</h3>
+                        <span class="text-apm-gold text-xs uppercase tracking-widest font-bold">Rotation de Stock &amp; Arbitrage Commercial</span>
+                        <h3 class="text-3xl font-serif text-white mt-2 mb-4">Estimer votre valeur de reprise &amp; votre soulte</h3>
                         <p class="text-xs text-apm-muted leading-relaxed mb-6">
-                            Pour protéger votre capital automobile avant le palier critique des 36 mois, notre algorithme réévalue l'offre de reprise contractuelle garantie par la concession d'Antibes.
+                            Pour optimiser la revente de votre véhicule et éviter les grosses décotes de fin d'année, notre simulateur calcule la valeur de rachat cash ainsi que l'effort financier nécessaire pour basculer sur un autre modèle disponible à la concession.
                         </p>
                     </div>
 
-                    <!-- INTERACTION: ESTIMER VOTRE VÉHICULE -->
+                    <!-- Simulateur interactif de reprise -->
                     <div class="border border-apm-border p-6 bg-apm-bg/40 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                         <div>
-                            <label class="block text-xs text-apm-muted uppercase tracking-wider mb-2">Kilométrage Actuel de votre Porsche</label>
+                            <label class="block text-xs text-apm-muted uppercase tracking-wider mb-2">Kilométrage actuel réel</label>
                             <input id="input-km" type="number" value="24500" class="w-full bg-apm-card border border-apm-border rounded-lg px-4 py-2.5 text-sm font-mono text-white focus:outline-none focus:border-apm-gold">
                         </div>
                         <div>
-                            <label class="block text-xs text-apm-muted uppercase tracking-wider mb-2">État de Conservation</label>
+                            <label class="block text-xs text-apm-muted uppercase tracking-wider mb-2">État général estimé</label>
                             <select id="input-state" class="w-full bg-apm-card border border-apm-border rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-apm-gold">
-                                <option value="1">État Irréprochable (Zéro défaut)</option>
-                                <option value="0.95">Très Bon État (Défauts mineurs d'usage)</option>
-                                <option value="0.85">À Reconditionner (Pneumatiques/Carrosserie)</option>
+                                <option value="1">Parfait état (Aucun frais à prévoir)</option>
+                                <option value="0.94">Frais de carrosserie/pneus légers à déduire</option>
                             </select>
                         </div>
                         <div>
                             <button onclick="calculateEstimate()" class="w-full bg-apm-gold text-apm-bg font-bold text-xs uppercase tracking-widest py-3 rounded-lg hover:bg-white transition-colors">
-                                Calculer ma valeur de reprise
+                                Recalculer l'offre de reprise
                             </button>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                        <div class="bg-apm-dark border border-apm-border p-6 rounded-xl">
-                            <span class="text-xs text-apm-muted uppercase tracking-wider block">Valeur Offerte Garantie APM :</span>
-                            <div class="text-4xl font-mono font-bold text-apm-gold mt-2" id="display-val">112 000 €</div>
-                            <p class="text-[11px] text-apm-green mt-3 font-medium">✓ Offre d'échange sans apport applicable immédiatement.</p>
+                    <!-- AJOUT COMMERCIAL : LE CALCUL DE SOULTE ET EFFORT FINANCIER -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+                        <div class="bg-apm-dark border border-apm-border p-6 rounded-xl flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs text-apm-muted uppercase tracking-wider block">Valeur de rachat estimée :</span>
+                                <div class="text-4xl font-mono font-bold text-apm-gold mt-2" id="display-val">112 000 €</div>
+                            </div>
+                            <p class="text-[10px] text-apm-muted mt-4">Calcul basé sur les cotes du marché local actuel de la Côte d'Azur.</p>
                         </div>
                         
-                        <!-- INTERACTION: RÉSERVER UN ESSAI DE LA MONTÉE DE GAMME -->
-                        <div class="bg-apm-bg border border-apm-border p-6 rounded-xl flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-1">Passer à la vitesse supérieure</h4>
-                                <p class="text-xs text-apm-muted font-light leading-relaxed">
-                                    Utilisez l'enveloppe de reprise de votre Porsche pour basculer sur un modèle millésimé 2026 sans effort financier additionnel.
-                                </p>
+                        <!-- Calculateur de Soulte Intégré -->
+                        <div class="lg:col-span-2 bg-apm-bg border border-apm-border p-6 rounded-xl space-y-4">
+                            <h4 class="text-xs font-bold text-white uppercase tracking-wider">🔄 Simuler une montée de gamme sans impacter votre trésorerie</h4>
+                            <p class="text-xs text-apm-muted font-light">Sélectionnez un modèle de notre parc actuel pour voir la soulte restante (différence financière) :</p>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                <button onclick="selectTargetCar('Porsche Carrera GTS 2025', 145000)" class="p-3 bg-apm-card border border-apm-border rounded-xl text-left hover:border-apm-gold transition">
+                                    <span class="block font-medium text-white">Porsche Carrera GTS (Occasion Récente)</span>
+                                    <span class="text-apm-muted text-[11px]">Prix de vente : 145 000 €</span>
+                                </button>
+                                <button onclick="selectTargetCar('Alpine A110 GT 2024', 72000)" class="p-3 bg-apm-card border border-apm-border rounded-xl text-left hover:border-apm-gold transition">
+                                    <span class="block font-medium text-white">Alpine A110 GT (Optimisation budget)</span>
+                                    <span class="text-apm-muted text-[11px]">Prix de vente : 72 000 €</span>
+                                </button>
                             </div>
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <button onclick="openTestDriveModal('Aston Martin Vantage V8 (2026)')" class="bg-apm-card border border-apm-gold text-apm-gold text-[10px] uppercase tracking-wider font-bold px-4 py-2 hover:bg-apm-gold hover:text-apm-bg transition">
-                                    Essayer l'Aston Martin V8
-                                </button>
-                                <button onclick="openTestDriveModal('Porsche Taycan Turbo S (2026)')" class="bg-apm-card border border-apm-gold text-apm-gold text-[10px] uppercase tracking-wider font-bold px-4 py-2 hover:bg-apm-gold hover:text-apm-bg transition">
-                                    Essayer la Taycan Turbo S
-                                </button>
+
+                            <!-- Bloc d'affichage de la Soulte calculée -->
+                            <div id="soulte-result-box" class="hidden p-3 bg-apm-card border border-dashed border-apm-gold/30 rounded-xl text-center">
+                                <p class="text-xs text-white">
+                                    Pour acquérir la <span id="soulte-car-name" class="font-bold text-apm-gold">...</span> :
+                                </p>
+                                <div class="text-lg font-mono font-bold text-white mt-1" id="soulte-value">
+                                    Soulte : -- €
+                                </div>
+                                <p class="text-[10px] text-apm-muted mt-0.5" id="soulte-explanation"></p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Modulateur d'affichage de réservation d'essai -->
-                    <div id="test-drive-form-container" class="hidden mt-6 p-4 border border-apm-gold/30 bg-apm-dark rounded-xl text-center">
-                        <p class="text-xs text-white">Demande de réservation d'essai gratuit pour la : <span id="target-car-display" class="text-apm-gold font-bold">Modèle</span></p>
-                        <button onclick="confirmTestDrive()" class="mt-3 bg-apm-gold text-apm-bg text-[10px] uppercase font-bold tracking-widest px-4 py-2 rounded">
-                            Confirmer mon essai privé gratuit à Antibes
-                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- PILIER 3: PROGRAMME AMBASSADEUR DIGITALISÉ (Pas de points, récompenses concrètes d'usage) -->
+            <!-- PILIER 3: PROGRAMME AMBASSADEUR DIGITALISÉ (CORRIGÉ : Pas de frais fous, uniquement du nettoyage) -->
             <div id="tab-ambassadeur" class="tab-content space-y-6">
                 <div class="bg-apm-card border border-apm-border rounded-2xl p-6 lg:p-8">
                     <div class="max-w-2xl mb-6">
-                        <span class="text-apm-gold text-xs uppercase tracking-widest font-bold">Acquisition Organique & Recommandation</span>
-                        <h3 class="text-3xl font-serif text-white mt-1">Votre Programme d'Ambassadeur Privé</h3>
+                        <span class="text-apm-gold text-xs uppercase tracking-widest font-bold">Parrainage Direct &amp; Économie de Coûts publicitaires</span>
+                        <h3 class="text-3xl font-serif text-white mt-1">Recommandez un proche de votre réseau</h3>
                         <p class="text-xs text-apm-muted leading-relaxed mt-2">
-                            Chez Azur Premium Motor, nous éliminons les budgets publicitaires pour investir directement sur nos membres. Recommandez un contact de votre réseau d'affaires et bénéficiez d'avantages d'usage prestigieux.
+                            Plutôt que de payer des budgets publicitaires aux plateformes en ligne, nous récompensons votre bouche-à-oreille avec des prestations d'atelier concrètes réalisées directement par nos équipes à la concession d'Antibes.
                         </p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Code Ambassadeur -->
                         <div class="bg-apm-dark border border-apm-border p-6 rounded-xl flex flex-col justify-between">
                             <div>
-                                <span class="text-[10px] text-apm-muted uppercase tracking-widest block mb-2">Votre Code de Recommandation Numérique</span>
-                                <div class="bg-apm-bg border border-dashed border-apm-gold/40 p-3 rounded-lg text-center font-mono text-lg text-apm-gold font-bold cursor-pointer hover:bg-apm-card transition" onclick="alert('Code copié !')">
-                                    APM-ROLAND-911
+                                <span class="text-[10px] text-apm-muted uppercase tracking-widest block mb-2">Votre lien de recommandation client</span>
+                                <div class="bg-apm-bg border border-dashed border-apm-gold/40 p-3 rounded-lg text-center font-mono text-base text-apm-gold font-bold cursor-pointer hover:bg-apm-card transition" onclick="alert('Code copié ! Partagez-le à votre contact.')">
+                                    APM-ROLAND-ANTIBES
                                 </div>
-                                <p class="text-[11px] text-apm-muted mt-3 font-light">Cliquez sur l'encadré pour copier et partager le code à votre filleul.</p>
+                                <p class="text-[11px] text-apm-muted mt-3 font-light">Cliquez pour copier le code et le transmettre à un ami en recherche d'un véhicule (neuf ou occasion).</p>
                             </div>
+                            <!-- AJOUT / CORRECTION RENTABILITÉ : Cadeau Filleul mesuré -->
                             <div class="mt-4 pt-4 border-t border-apm-border text-[11px] text-apm-gold font-medium">
-                                🎁 Avantage Filleul : Extension de garantie constructeur de 12 mois offerte à la livraison.
+                                🎁 <span class="text-white">Avantage pour votre filleul :</span> Un nettoyage extérieur express offert le jour de la livraison de son véhicule.
                             </div>
                         </div>
 
+                        <!-- Récompense Parrain (Pragmatique et sans coût financier excessif) -->
                         <div class="bg-apm-dark border border-apm-border p-6 rounded-xl space-y-4">
-                            <h4 class="text-sm font-bold uppercase tracking-wider text-white">Vos privilèges acquis par recommandation</h4>
+                            <h4 class="text-sm font-bold uppercase tracking-wider text-white">Vos avantages Parrain (Après livraison validée)</h4>
                             <div class="space-y-2 text-xs">
-                                <div class="p-3 bg-apm-green/10 border border-apm-green/20 text-apm-green rounded-lg flex justify-between items-center">
-                                    <span>✓ 1ère Recommandation Validée</span>
-                                    <span class="font-bold text-[10px] bg-apm-green text-white px-2 py-0.5 rounded">Traitement Céramique Offert</span>
+                                <div class="p-3 bg-apm-bg border border-apm-border text-white rounded-lg flex justify-between items-center">
+                                    <div>
+                                        <p class="font-medium">🥇 1er Parrainage validé</p>
+                                        <span class="text-[10px] text-apm-muted">Fait travailler nos équipes internes sans coût de pièce externe</span>
+                                    </div>
+                                    <span class="font-bold text-[10px] bg-apm-gold text-apm-bg px-2 py-1 rounded uppercase">Nettoyage Intérieur Complet Offert</span>
                                 </div>
-                                <div class="p-3 bg-apm-bg border border-apm-border text-apm-muted rounded-lg flex justify-between items-center opacity-60">
-                                    <span>○ 2e Recommandation (En attente)</span>
-                                    <span class="font-bold text-[10px] bg-apm-card border border-apm-border px-2 py-0.5 rounded">Week-end en Cabriolet de Luxe</span>
+                                <div class="p-3 bg-apm-bg border border-apm-border text-apm-muted rounded-lg flex justify-between items-center opacity-50">
+                                    <div>
+                                        <p class="font-medium">🥈 2e Parrainage</p>
+                                        <span class="text-[10px] text-apm-muted">Check-up mécanique pré-contrôle technique</span>
+                                    </div>
+                                    <span class="font-bold text-[10px] bg-apm-card border border-apm-border px-2 py-1 rounded uppercase">Bilan Sécurité Offert</span>
                                 </div>
                             </div>
                         </div>
@@ -305,54 +324,58 @@
                 </div>
             </div>
 
-            <!-- PILIER 4: LA CONCIERGERIE & LES ÉVÉNEMENTS DU CLUB -->
+            <!-- PILIER 4: LA CONCIERGERIE & LES ÉVÉNEMENTS DU CLUB (CORRIGÉ : Événements simples, conviviaux et ultra-rentables) -->
             <div id="tab-conciergerie" class="tab-content space-y-6">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     
-                    <!-- Module Conciergerie / Valet d'Atelier -->
+                    <!-- Conciergerie de proximité -->
                     <div class="lg:col-span-2 bg-apm-card border border-apm-border rounded-2xl p-6 flex flex-col justify-between">
                         <div>
-                            <span class="text-apm-gold text-xs uppercase tracking-widest font-bold block mb-1">Service d'Intendance sans friction</span>
-                            <h3 class="text-2xl font-serif text-white">Votre Concierge Privé</h3>
+                            <span class="text-apm-gold text-xs uppercase tracking-widest font-bold block mb-1">Optimisation logistique atelier</span>
+                            <h3 class="text-2xl font-serif text-white">Prise en charge de votre véhicule</h3>
                             <p class="text-xs text-apm-muted leading-relaxed mt-2 mb-6">
-                                Évitez les déplacements. Pour votre révision obligatoire approchant (sous 45 jours), activez notre service de Jockey/Valet. Un chauffeur certifié APM prend en charge votre Porsche à votre domicile ou bureau sur la Côte d'Azur.
+                                Pour votre prochaine révision ou un simple contrôle d'usage, pas besoin de perdre votre samedi matin. Notre service de voiturier local récupère votre véhicule directement à votre domicile ou lieu de travail dans un rayon de 20 km autour d'Antibes.
                             </p>
                             
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-left">
                                 <div class="p-4 bg-apm-bg rounded-xl border border-apm-border">
-                                    <span class="block text-white font-medium mb-1">📍 Prise en charge Prioritaire</span>
-                                    <p class="text-apm-muted font-light">Service Voiturier inclus Antibes, Cannes, Monaco, Nice.</p>
+                                    <span class="block text-white font-medium mb-1">📍 Périmètre Antibes & Environs</span>
+                                    <p class="text-apm-muted font-light">Service réactif planifié selon les disponibilités de nos convoyeurs internes.</p>
                                 </div>
                                 <div class="p-4 bg-apm-bg rounded-xl border border-apm-border">
-                                    <span class="block text-white font-medium mb-1">🚗 Véhicule de Courtoisie</span>
-                                    <p class="text-apm-muted font-light">Mise à disposition systématique d'une berline de gamme équivalente.</p>
+                                    <span class="block text-white font-medium mb-1">🚗 Solution de Mobilité</span>
+                                    <p class="text-apm-muted font-light">Mise à disposition d'un véhicule de courtoisie du parc selon stock disponible.</p>
                                 </div>
                             </div>
                         </div>
                         
-                        <button onclick="alert('Demande de conciergerie transmise. Gregory Roland vous contactera par téléphone pour caler l\'heure de récupération de votre Porsche.')" class="w-full mt-6 bg-apm-gold text-apm-bg font-bold text-xs uppercase tracking-widest py-3 rounded-xl hover:bg-white transition">
-                            Solliciter la Conciergerie pour mon Entretien
+                        <button onclick="alert('Demande de prise en charge transmise à l\'atelier d\'Antibes. Un technicien va valider la date disponible avec vous.')" class="w-full mt-6 bg-apm-gold text-apm-bg font-bold text-xs uppercase tracking-widest py-3 rounded-xl hover:bg-white transition">
+                            Planifier un rendez-visite Atelier
                         </button>
                     </div>
 
-                    <!-- Événements Exclusifs du Club -->
+                    <!-- ÉVÉNEMENTS SIMPLES ET CONVIVIAUX (Remplacement des Trackdays chers) -->
                     <div class="bg-apm-card border border-apm-border rounded-2xl p-6 flex flex-col justify-between">
                         <div>
-                            <h4 class="text-lg font-serif text-white mb-3">Événements Privés Club APM</h4>
+                            <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-2">☕ Rencontres &amp; Communauté APM</h4>
                             <p class="text-xs text-apm-muted leading-relaxed mb-4">
-                                Accédez aux rassemblements fermés et aux sorties sur circuit organisés par la concession pour notre noyau de clients fidèles.
+                                Des moments simples d'échange directement à la concession pour créer du lien sans impacter nos marges.
                             </p>
                             
                             <div class="space-y-3">
+                                <!-- Événement 1 : Café Croissant (Ultra rentable) -->
                                 <div class="p-3 bg-apm-dark border-l-2 border-apm-gold rounded-r-xl text-xs">
-                                    <p class="text-white font-semibold">Track Day Privé — Circuit du Castellet</p>
-                                    <span class="text-[10px] text-apm-muted font-mono block mt-0.5">📅 28 Septembre 2026</span>
-                                    <button onclick="alert('Inscription enregistrée sur la liste d\'attente VIP du Castellet.')" class="text-apm-gold font-bold text-[10px] uppercase tracking-wider block mt-2 hover:underline">S'inscrire à l'événement →</button>
+                                    <p class="text-white font-semibold">Matinée Café-Croissants &amp; Portes Ouvertes</p>
+                                    <span class="text-[10px] text-apm-muted font-mono block mt-0.5">📅 Samedi Prochain (09h00 - 12h00)</span>
+                                    <p class="text-[11px] text-apm-muted mt-1 font-light">Venez découvrir nos nouveautés de la semaine autour d'un café convivial à Antibes.</p>
+                                    <button onclick="alert('Votre présence est notée pour la matinée café ! À samedi !')" class="text-apm-gold font-bold text-[10px] uppercase tracking-wider block mt-2 hover:underline">Confirmer mon passage →</button>
                                 </div>
-                                <div class="p-3 bg-apm-dark border-l-2 border-apm-border rounded-r-xl text-xs opacity-70">
-                                    <p class="text-white font-semibold">Rallye d'Élégance — Saint-Tropez</p>
-                                    <span class="text-[10px] text-apm-muted font-mono block mt-0.5">📅 14 Octobre 2026</span>
-                                    <button onclick="alert('Inscription enregistrée sur la liste d\'attente VIP de Saint-Tropez.')" class="text-apm-gold font-bold text-[10px] uppercase tracking-wider block mt-2 hover:underline">S'inscrire à l'événement →</button>
+                                <!-- Événement 2 : Atelier Technique Pratique -->
+                                <div class="p-3 bg-apm-dark border-l-2 border-apm-border rounded-r-xl text-xs">
+                                    <p class="text-white font-semibold">Atelier Pratique : "Préparer son véhicule pour l'été"</p>
+                                    <span class="text-[10px] text-apm-muted font-mono block mt-0.5">📅 Début de mois prochain</span>
+                                    <p class="text-[11px] text-apm-muted mt-1 font-light">Conseils de nos mécaniciens pour vérifier vos niveaux et vos pneumatiques vous-même.</p>
+                                    <button onclick="alert('Inscription à l\'atelier technique prise en compte !')" class="text-apm-gold font-bold text-[10px] uppercase tracking-wider block mt-2 hover:underline">Réserver un créneau (Gratuit) →</button>
                                 </div>
                             </div>
                         </div>
@@ -360,22 +383,22 @@
                 </div>
             </div>
 
-            <!-- PILIER 5: LE HUB DE COLLECTE D'AVIS (Objectif managérial 4.5/5 sans points de fidélité) -->
+            <!-- PILIER 5: LE HUB DE COLLECTE D'AVIS (Avec AJOUT: Suivi / Génération du QR Code Récompense Nettoyage) -->
             <div id="tab-avis" class="tab-content space-y-6">
                 <div class="max-w-2xl mx-auto bg-apm-card border border-apm-border rounded-2xl p-6 md:p-8 text-center space-y-6">
                     <div class="w-14 h-14 bg-apm-gold/10 text-apm-gold rounded-full flex items-center justify-center text-xl mx-auto border border-apm-gold/20">
                         ⭐
                     </div>
                     <div>
-                        <h3 class="text-2xl font-serif text-white">Hub de Mesure de la Qualité de Service</h3>
+                        <h3 class="text-2xl font-serif text-white">Amélioration de notre Service Local</h3>
                         <p class="text-xs text-apm-muted leading-relaxed mt-2">
-                            Notre audit interne relève une note de satisfaction de **4,2/5**. Pour atteindre notre objectif managérial d'excellence fixé à **4,5/5**, votre évaluation en temps réel est primordiale.
+                            Notre note interne actuelle est de **4,2/5**. Pour aider la concession d'Antibes à franchir son objectif managérial de **4,5/5**, votre retour d'expérience est précieux.
                         </p>
                     </div>
 
-                    <!-- INTERACTION RATING -->
+                    <!-- Interaction étoiles -->
                     <div class="bg-apm-bg/60 border border-apm-border p-6 rounded-xl space-y-4">
-                        <p class="text-xs font-medium text-white uppercase tracking-wider">Quelle note attribuez-vous à votre expérience chez Azur Premium Motor ?</p>
+                        <p class="text-xs font-medium text-white uppercase tracking-wider">Quelle note donnez-vous à votre accueil chez Azur Premium Motor ?</p>
                         <div class="flex justify-center gap-3 text-3xl">
                             <button onclick="setLiveRating(1)" class="star-item text-apm-border hover:text-apm-gold transition">★</button>
                             <button onclick="setLiveRating(2)" class="star-item text-apm-border hover:text-apm-gold transition">★</button>
@@ -384,15 +407,31 @@
                             <button onclick="setLiveRating(5)" class="star-item text-apm-border hover:text-apm-gold transition">★</button>
                         </div>
 
-                        <!-- Redirection Conditionnelle Inteligente Google Maps sans points -->
-                        <div id="google-maps-prompt" class="hidden border-t border-apm-border pt-4 mt-4 text-center">
-                            <p class="text-xs text-apm-green font-semibold mb-1">✨ Merci infiniment pour votre fidélité et votre note d'excellence !</p>
-                            <p class="text-[11px] text-apm-muted mb-4 leading-relaxed">
-                                Pour soutenir notre visibilité digitale à Antibes, acceptez-vous de déposer votre avis sur notre fiche Google Maps ? En remerciement, nous ajouterons un **pack de nettoyage intérieur complet haute finition** lors de votre prochain passage à l'atelier.
+                        <!-- AJOUT COMMERCIAL : GÉNERATION AUTOMATIQUE DU TICKET NETTOYAGE APPRÈS AVIS -->
+                        <div id="google-maps-prompt" class="hidden border-t border-apm-border pt-4 mt-4 text-center space-y-4">
+                            <p class="text-xs text-apm-green font-semibold">✨ Merci pour votre excellente évaluation !</p>
+                            <p class="text-[11px] text-apm-muted leading-relaxed">
+                                Si vous acceptez de copier-coller votre avis sur notre fiche Google Maps publique pour soutenir la concession, nous activons immédiatement un **Bon pour un Nettoyage Intérieur Express** valable lors de votre prochain passage à l'atelier.
                             </p>
-                            <a href="https://maps.google.com" target="_blank" class="inline-block bg-white text-apm-bg font-bold text-xs uppercase tracking-widest px-5 py-2.5 rounded-lg hover:bg-apm-gold transition-colors">
-                                Publier mon avis sur Google Maps
-                            </a>
+                            
+                            <div>
+                                <a href="https://maps.google.com" target="_blank" onclick="revealRewardQRCode()" class="inline-block bg-white text-apm-bg font-bold text-xs uppercase tracking-widest px-5 py-2.5 rounded-lg hover:bg-apm-gold transition-colors">
+                                    Écrire mon avis sur Google Maps
+                                </a>
+                            </div>
+
+                            <!-- Le QR code de récompense qui apparaît au clic -->
+                            <div id="reward-qrcode-box" class="hidden max-w-xs mx-auto p-4 bg-white text-apm-bg rounded-xl mt-4 space-y-2">
+                                <p class="text-[10px] font-bold uppercase tracking-wider text-apm-dark">🎁 BON RECONNAISSANCE ATELIER</p>
+                                <!-- Simulation visuelle d'un QR code en CSS pur -->
+                                <div class="w-32 h-32 mx-auto bg-apm-dark p-2 flex flex-wrap content-between justify-between rounded border-2 border-apm-dark">
+                                    <div class="w-10 h-10 bg-white"></div><div class="w-6 h-4 bg-white"></div><div class="w-10 h-10 bg-white"></div>
+                                    <div class="w-4 h-8 bg-white"></div><div class="w-12 h-12 bg-white"></div><div class="w-6 h-6 bg-white"></div>
+                                    <div class="w-10 h-10 bg-white"></div><div class="w-8 h-4 bg-white"></div><div class="w-10 h-10 bg-white"></div>
+                                </div>
+                                <span class="block text-[11px] font-mono font-bold text-apm-dark uppercase mt-1">Prestation : Nettoyage Intérieur Offert</span>
+                                <span class="block text-[9px] text-gray-500">Ajouté automatiquement à votre fiche client d'Antibes</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -403,7 +442,7 @@
 
     <!-- CODE CONTROLEUR LOGIQUE INTERACTIF -->
     <script>
-        // 1. Gestionnaire de bascule d'onglets (Single Page Application)
+        // 1. Navigation Onglets (Single Page Application)
         function switchTab(tabId) {
             const modules = document.querySelectorAll('.tab-content');
             modules.forEach(m => m.classList.remove('active'));
@@ -418,13 +457,15 @@
             activeBtn.className = "tab-btn w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-300 bg-apm-gold text-apm-bg shadow-lg shadow-apm-gold/10";
         }
 
-        // 2. Options Dépliantes (Garage)
+        // 2. Ouvrir la fiche technique (Garage)
         function toggleSpecs() {
             const block = document.getElementById('specs-block');
             block.classList.toggle('hidden');
         }
 
-        // 3. Estimateur Dynamique (Renouvellement Anticipé)
+        // 3. Estimateur Basique (Renouvellement)
+        let currentRepriseValue = 112000; // Stocker temporairement la valeur calculée
+
         function calculateEstimate() {
             const inputKm = document.getElementById('input-km').value;
             const stateModifier = document.getElementById('input-state').value;
@@ -433,25 +474,43 @@
             let kmDepreciation = (inputKm - 10000) * 0.85;
             if(kmDepreciation < 0) kmDepreciation = 0;
 
-            let finalCalculatedVal = Math.round((baselineValue - kmDepreciation) * stateModifier);
-            if (finalCalculatedVal < 85000) finalCalculatedVal = 85000;
+            currentRepriseValue = Math.round((baselineValue - kmDepreciation) * stateModifier);
+            if (currentRepriseValue < 10000) currentRepriseValue = 10000; // Sécurité plancher
 
-            document.getElementById('display-val').innerText = finalCalculatedVal.toLocaleString('fr-FR') + " €";
+            document.getElementById('display-val').innerText = currentRepriseValue.toLocaleString('fr-FR') + " €";
+            
+            // Masquer la soulte si on recalcule la reprise principale pour éviter des bugs d'affichage
+            document.getElementById('soulte-result-box').classList.add('hidden');
         }
 
-        // 4. Modal de réservation d'essai gratuit
-        function openTestDriveModal(carModel) {
-            document.getElementById('test-drive-form-container').classList.remove('hidden');
-            document.getElementById('target-car-display').innerText = carModel;
-            document.getElementById('test-drive-form-container').scrollIntoView({ behavior: 'smooth' });
+        // 4. Calculateur de Soulte Commerciale (Logique Métier Financière)
+        function selectTargetCar(carName, targetPrice) {
+            const resultBox = document.getElementById('soulte-result-box');
+            const carNameDisplay = document.getElementById('soulte-car-name');
+            const soulteValueDisplay = document.getElementById('soulte-value');
+            const explanationDisplay = document.getElementById('soulte-explanation');
+
+            resultBox.classList.remove('hidden');
+            carNameDisplay.innerText = carName;
+
+            let diff = targetPrice - currentRepriseValue;
+
+            if(diff > 0) {
+                // Cas d'une montée de gamme (le client doit rajouter de l'argent)
+                let estimatedMonthly = Math.round(diff / 36); // lissage indicatif sur 36 mois
+                soulteValueDisplay.innerText = "Soulte à financer : +" + diff.toLocaleString('fr-FR') + " €";
+                soulteValueDisplay.className = "text-base font-mono font-bold text-amber-500 mt-1";
+                explanationDisplay.innerText = "Soit un ajustement de loyer estimé à environ +" + estimatedMonthly + " €/mois sur 36 mois sans apport.";
+            } else {
+                // Cas d'une descente de gamme ou d'une voiture moins chère (la concession redonne de l'argent ou réduit le loyer)
+                let creditRetour = Math.abs(diff);
+                soulteValueDisplay.innerText = "Solde en votre faveur : " + creditRetour.toLocaleString('fr-FR') + " €";
+                soulteValueDisplay.className = "text-base font-mono font-bold text-apm-green mt-1";
+                explanationDisplay.innerText = "La concession d'Antibes vous reverse la différence ou l'injecte pour diminuer vos prochaines mensualités.";
+            }
         }
 
-        function confirmTestDrive() {
-            alert("Votre demande d'essai VIP gratuit a été validée. Un conseiller d'Antibes va vous envoyer vos accès d'accès par SMS.");
-            document.getElementById('test-drive-form-container').classList.add('hidden');
-        }
-
-        // 5. Hub Collecte d'Avis (Bascule Étoiles)
+        // 5. Gestionnaire d'avis et d'étoiles
         function setLiveRating(ratingValue) {
             const stars = document.querySelectorAll('.star-item');
             stars.forEach((star, index) => {
@@ -466,7 +525,13 @@
                 document.getElementById('google-maps-prompt').classList.remove('hidden');
             } else {
                 document.getElementById('google-maps-prompt').classList.add('hidden');
+                document.getElementById('reward-qrcode-box').classList.add('hidden');
             }
+        }
+
+        // 6. Révéler le ticket nettoyage
+        function revealRewardQRCode() {
+            document.getElementById('reward-qrcode-box').classList.remove('hidden');
         }
     </script>
 </body>
